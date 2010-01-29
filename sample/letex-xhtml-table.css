@@ -1,0 +1,11 @@
+thead, tr.rule-below td, td.rule-below { 
+  border-bottom: 1px dotted black !important;
+}
+
+tfoot { 
+  border-top: 3px solid black !important;
+}
+
+col.rule-right, td.rule-right { 
+  border-right: 1px dotted black !important;
+}
