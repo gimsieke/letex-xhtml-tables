@@ -9,7 +9,7 @@
 
   <!-- $Id: svrl2txt.xsl 5584 2009-11-24 12:14:07Z gerrit $ -->
 
-  <xsl:output encoding="ISO-8859-1" method="text"/>
+  <xsl:output encoding="UTF-8" method="text"/>
 
   <xsl:template match="/">
     <xsl:text>&#xa;</xsl:text>

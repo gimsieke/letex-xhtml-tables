@@ -1,7 +1,5 @@
 #!/bin/bash
 
-# to be invoked from .. (the directory above 'bin'), without arguments
-
 SCHEMATRONDIR=file:///c://cygwin/lib/Schematron
 
 saxon -versionmsg:off -xsl:$SCHEMATRONDIR/iso_abstract_expand.xsl -s:$1  \
