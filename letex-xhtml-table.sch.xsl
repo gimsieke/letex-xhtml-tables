@@ -38,7 +38,7 @@
 <!--MODE: SCHEMATRON-SELECT-FULL-PATH-->
 <!--This mode can be used to generate an ugly though full XPath for locators-->
 <xsl:template match="*" mode="schematron-select-full-path">
-      <xsl:apply-templates select="." mode="schematron-get-full-path-3"/>
+      <xsl:apply-templates select="." mode="schematron-get-full-path-2"/>
    </xsl:template>
 
    <!--MODE: SCHEMATRON-FULL-PATH-->
@@ -182,7 +182,7 @@
             <xsl:attribute name="name">Document type</xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
-         <xsl:apply-templates select="/" mode="M5"/>
+         <xsl:apply-templates select="/" mode="M7"/>
          <svrl:active-pattern>
             <xsl:attribute name="document">
                <xsl:value-of select="document-uri(/)"/>
@@ -191,7 +191,7 @@
             <xsl:attribute name="name">HeadAllowedElements</xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
-         <xsl:apply-templates select="/" mode="M6"/>
+         <xsl:apply-templates select="/" mode="M8"/>
          <svrl:active-pattern>
             <xsl:attribute name="document">
                <xsl:value-of select="document-uri(/)"/>
@@ -200,7 +200,7 @@
             <xsl:attribute name="name">Meta info</xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
-         <xsl:apply-templates select="/" mode="M7"/>
+         <xsl:apply-templates select="/" mode="M9"/>
          <svrl:active-pattern>
             <xsl:attribute name="document">
                <xsl:value-of select="document-uri(/)"/>
@@ -209,7 +209,7 @@
             <xsl:attribute name="name">LinkAllowedAttributes</xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
-         <xsl:apply-templates select="/" mode="M8"/>
+         <xsl:apply-templates select="/" mode="M10"/>
          <svrl:active-pattern>
             <xsl:attribute name="document">
                <xsl:value-of select="document-uri(/)"/>
@@ -218,7 +218,7 @@
             <xsl:attribute name="name">HeadAllowedAttributeValues</xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
-         <xsl:apply-templates select="/" mode="M9"/>
+         <xsl:apply-templates select="/" mode="M11"/>
          <svrl:active-pattern>
             <xsl:attribute name="document">
                <xsl:value-of select="document-uri(/)"/>
@@ -227,7 +227,7 @@
             <xsl:attribute name="name">BodyAllowedElements</xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
-         <xsl:apply-templates select="/" mode="M10"/>
+         <xsl:apply-templates select="/" mode="M12"/>
          <svrl:active-pattern>
             <xsl:attribute name="document">
                <xsl:value-of select="document-uri(/)"/>
@@ -236,7 +236,7 @@
             <xsl:attribute name="name">TableAllowedElements</xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
-         <xsl:apply-templates select="/" mode="M11"/>
+         <xsl:apply-templates select="/" mode="M13"/>
          <svrl:active-pattern>
             <xsl:attribute name="document">
                <xsl:value-of select="document-uri(/)"/>
@@ -245,7 +245,7 @@
             <xsl:attribute name="name">TableAllowedAttributes</xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
-         <xsl:apply-templates select="/" mode="M12"/>
+         <xsl:apply-templates select="/" mode="M14"/>
          <svrl:active-pattern>
             <xsl:attribute name="document">
                <xsl:value-of select="document-uri(/)"/>
@@ -254,7 +254,7 @@
             <xsl:attribute name="name">ColAllowedAttributes</xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
-         <xsl:apply-templates select="/" mode="M13"/>
+         <xsl:apply-templates select="/" mode="M15"/>
          <svrl:active-pattern>
             <xsl:attribute name="document">
                <xsl:value-of select="document-uri(/)"/>
@@ -263,7 +263,7 @@
             <xsl:attribute name="name">ColAllowedAttributeValues</xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
-         <xsl:apply-templates select="/" mode="M14"/>
+         <xsl:apply-templates select="/" mode="M16"/>
          <svrl:active-pattern>
             <xsl:attribute name="document">
                <xsl:value-of select="document-uri(/)"/>
@@ -272,7 +272,7 @@
             <xsl:attribute name="name">RowAllowedElements</xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
-         <xsl:apply-templates select="/" mode="M15"/>
+         <xsl:apply-templates select="/" mode="M17"/>
          <svrl:active-pattern>
             <xsl:attribute name="document">
                <xsl:value-of select="document-uri(/)"/>
@@ -281,7 +281,7 @@
             <xsl:attribute name="name">RowAllowedAttributeValues</xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
-         <xsl:apply-templates select="/" mode="M16"/>
+         <xsl:apply-templates select="/" mode="M18"/>
          <svrl:active-pattern>
             <xsl:attribute name="document">
                <xsl:value-of select="document-uri(/)"/>
@@ -290,7 +290,7 @@
             <xsl:attribute name="name">CellAllowedElements</xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
-         <xsl:apply-templates select="/" mode="M17"/>
+         <xsl:apply-templates select="/" mode="M19"/>
          <svrl:active-pattern>
             <xsl:attribute name="document">
                <xsl:value-of select="document-uri(/)"/>
@@ -299,7 +299,7 @@
             <xsl:attribute name="name">CellAllowedAttributes</xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
-         <xsl:apply-templates select="/" mode="M18"/>
+         <xsl:apply-templates select="/" mode="M20"/>
          <svrl:active-pattern>
             <xsl:attribute name="document">
                <xsl:value-of select="document-uri(/)"/>
@@ -308,7 +308,7 @@
             <xsl:attribute name="name">CellAllowedAttributeValues</xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
-         <xsl:apply-templates select="/" mode="M19"/>
+         <xsl:apply-templates select="/" mode="M21"/>
          <svrl:active-pattern>
             <xsl:attribute name="document">
                <xsl:value-of select="document-uri(/)"/>
@@ -317,7 +317,7 @@
             <xsl:attribute name="name">If there is already class="rule-below" on tr, don't allow this on td</xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
-         <xsl:apply-templates select="/" mode="M20"/>
+         <xsl:apply-templates select="/" mode="M22"/>
          <svrl:active-pattern>
             <xsl:attribute name="document">
                <xsl:value-of select="document-uri(/)"/>
@@ -326,7 +326,7 @@
             <xsl:attribute name="name">InlineMarkupAllowedElements</xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
-         <xsl:apply-templates select="/" mode="M21"/>
+         <xsl:apply-templates select="/" mode="M23"/>
          <svrl:active-pattern>
             <xsl:attribute name="document">
                <xsl:value-of select="document-uri(/)"/>
@@ -335,16 +335,7 @@
             <xsl:attribute name="name">InlineMarkupExclusions</xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
-         <xsl:apply-templates select="/" mode="M22"/>
-         <svrl:active-pattern>
-            <xsl:attribute name="document">
-               <xsl:value-of select="document-uri(/)"/>
-            </xsl:attribute>
-            <xsl:attribute name="id">EmphasisMandatoryAttributes</xsl:attribute>
-            <xsl:attribute name="name">EmphasisMandatoryAttributes</xsl:attribute>
-            <xsl:apply-templates/>
-         </svrl:active-pattern>
-         <xsl:apply-templates select="/" mode="M23"/>
+         <xsl:apply-templates select="/" mode="M24"/>
          <svrl:active-pattern>
             <xsl:attribute name="document">
                <xsl:value-of select="document-uri(/)"/>
@@ -353,7 +344,7 @@
             <xsl:attribute name="name">Equations should be in LaTeX </xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
-         <xsl:apply-templates select="/" mode="M24"/>
+         <xsl:apply-templates select="/" mode="M25"/>
       </svrl:schematron-output>
    </xsl:template>
 
@@ -365,7 +356,7 @@
 <svrl:text xmlns:svrl="http://purl.oclc.org/dsdl/svrl">Document type</svrl:text>
 
 	  <!--RULE -->
-<xsl:template match="/*" priority="1000" mode="M5">
+<xsl:template match="/*" priority="1000" mode="M7">
       <svrl:fired-rule xmlns:svrl="http://purl.oclc.org/dsdl/svrl" context="/*"/>
 
 		    <!--ASSERT -->
@@ -388,18 +379,18 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-      <xsl:apply-templates select="@*|*|comment()|processing-instruction()" mode="M5"/>
+      <xsl:apply-templates select="@*|*|comment()|processing-instruction()" mode="M7"/>
    </xsl:template>
-   <xsl:template match="text()" priority="-1" mode="M5"/>
-   <xsl:template match="@*|node()" priority="-2" mode="M5">
-      <xsl:apply-templates select="@*|*|comment()|processing-instruction()" mode="M5"/>
+   <xsl:template match="text()" priority="-1" mode="M7"/>
+   <xsl:template match="@*|node()" priority="-2" mode="M7">
+      <xsl:apply-templates select="@*|*|comment()|processing-instruction()" mode="M7"/>
    </xsl:template>
 
    <!--PATTERN HeadAllowedElements-->
 
 
 	<!--RULE -->
-<xsl:template match="html:head" priority="1000" mode="M6">
+<xsl:template match="html:head" priority="1000" mode="M8">
       <svrl:fired-rule xmlns:svrl="http://purl.oclc.org/dsdl/svrl" context="html:head"/>
 
 		    <!--ASSERT -->
@@ -420,18 +411,18 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-      <xsl:apply-templates select="@*|*|comment()|processing-instruction()" mode="M6"/>
+      <xsl:apply-templates select="@*|*|comment()|processing-instruction()" mode="M8"/>
    </xsl:template>
-   <xsl:template match="text()" priority="-1" mode="M6"/>
-   <xsl:template match="@*|node()" priority="-2" mode="M6">
-      <xsl:apply-templates select="@*|*|comment()|processing-instruction()" mode="M6"/>
+   <xsl:template match="text()" priority="-1" mode="M8"/>
+   <xsl:template match="@*|node()" priority="-2" mode="M8">
+      <xsl:apply-templates select="@*|*|comment()|processing-instruction()" mode="M8"/>
    </xsl:template>
 
    <!--PATTERN HeadMeta info-->
 <svrl:text xmlns:svrl="http://purl.oclc.org/dsdl/svrl">Meta info</svrl:text>
 
 	  <!--RULE -->
-<xsl:template match="html:head" priority="1000" mode="M7">
+<xsl:template match="html:head" priority="1000" mode="M9">
       <svrl:fired-rule xmlns:svrl="http://purl.oclc.org/dsdl/svrl" context="html:head"/>
 
 		    <!--ASSERT -->
@@ -447,18 +438,18 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-      <xsl:apply-templates select="@*|*|comment()|processing-instruction()" mode="M7"/>
+      <xsl:apply-templates select="@*|*|comment()|processing-instruction()" mode="M9"/>
    </xsl:template>
-   <xsl:template match="text()" priority="-1" mode="M7"/>
-   <xsl:template match="@*|node()" priority="-2" mode="M7">
-      <xsl:apply-templates select="@*|*|comment()|processing-instruction()" mode="M7"/>
+   <xsl:template match="text()" priority="-1" mode="M9"/>
+   <xsl:template match="@*|node()" priority="-2" mode="M9">
+      <xsl:apply-templates select="@*|*|comment()|processing-instruction()" mode="M9"/>
    </xsl:template>
 
    <!--PATTERN LinkAllowedAttributes-->
 
 
 	<!--RULE -->
-<xsl:template match="html:link" priority="1000" mode="M8">
+<xsl:template match="html:link" priority="1000" mode="M10">
       <svrl:fired-rule xmlns:svrl="http://purl.oclc.org/dsdl/svrl" context="html:link"/>
 
 		    <!--ASSERT -->
@@ -479,18 +470,18 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-      <xsl:apply-templates select="@*|*|comment()|processing-instruction()" mode="M8"/>
+      <xsl:apply-templates select="@*|*|comment()|processing-instruction()" mode="M10"/>
    </xsl:template>
-   <xsl:template match="text()" priority="-1" mode="M8"/>
-   <xsl:template match="@*|node()" priority="-2" mode="M8">
-      <xsl:apply-templates select="@*|*|comment()|processing-instruction()" mode="M8"/>
+   <xsl:template match="text()" priority="-1" mode="M10"/>
+   <xsl:template match="@*|node()" priority="-2" mode="M10">
+      <xsl:apply-templates select="@*|*|comment()|processing-instruction()" mode="M10"/>
    </xsl:template>
 
    <!--PATTERN HeadAllowedAttributeValues-->
 
 
 	<!--RULE -->
-<xsl:template match="html:link" priority="1000" mode="M9">
+<xsl:template match="html:link" priority="1000" mode="M11">
       <svrl:fired-rule xmlns:svrl="http://purl.oclc.org/dsdl/svrl" context="html:link"/>
 
 		    <!--ASSERT -->
@@ -515,18 +506,18 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-      <xsl:apply-templates select="@*|*|comment()|processing-instruction()" mode="M9"/>
+      <xsl:apply-templates select="@*|*|comment()|processing-instruction()" mode="M11"/>
    </xsl:template>
-   <xsl:template match="text()" priority="-1" mode="M9"/>
-   <xsl:template match="@*|node()" priority="-2" mode="M9">
-      <xsl:apply-templates select="@*|*|comment()|processing-instruction()" mode="M9"/>
+   <xsl:template match="text()" priority="-1" mode="M11"/>
+   <xsl:template match="@*|node()" priority="-2" mode="M11">
+      <xsl:apply-templates select="@*|*|comment()|processing-instruction()" mode="M11"/>
    </xsl:template>
 
    <!--PATTERN BodyAllowedElements-->
 
 
 	<!--RULE -->
-<xsl:template match="html:body" priority="1000" mode="M10">
+<xsl:template match="html:body" priority="1000" mode="M12">
       <svrl:fired-rule xmlns:svrl="http://purl.oclc.org/dsdl/svrl" context="html:body"/>
 
 		    <!--ASSERT -->
@@ -547,18 +538,18 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-      <xsl:apply-templates select="@*|*|comment()|processing-instruction()" mode="M10"/>
+      <xsl:apply-templates select="@*|*|comment()|processing-instruction()" mode="M12"/>
    </xsl:template>
-   <xsl:template match="text()" priority="-1" mode="M10"/>
-   <xsl:template match="@*|node()" priority="-2" mode="M10">
-      <xsl:apply-templates select="@*|*|comment()|processing-instruction()" mode="M10"/>
+   <xsl:template match="text()" priority="-1" mode="M12"/>
+   <xsl:template match="@*|node()" priority="-2" mode="M12">
+      <xsl:apply-templates select="@*|*|comment()|processing-instruction()" mode="M12"/>
    </xsl:template>
 
    <!--PATTERN TableAllowedElements-->
 
 
 	<!--RULE -->
-<xsl:template match="html:table" priority="1000" mode="M11">
+<xsl:template match="html:table" priority="1000" mode="M13">
       <svrl:fired-rule xmlns:svrl="http://purl.oclc.org/dsdl/svrl" context="html:table"/>
 
 		    <!--ASSERT -->
@@ -579,18 +570,18 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-      <xsl:apply-templates select="@*|*|comment()|processing-instruction()" mode="M11"/>
+      <xsl:apply-templates select="@*|*|comment()|processing-instruction()" mode="M13"/>
    </xsl:template>
-   <xsl:template match="text()" priority="-1" mode="M11"/>
-   <xsl:template match="@*|node()" priority="-2" mode="M11">
-      <xsl:apply-templates select="@*|*|comment()|processing-instruction()" mode="M11"/>
+   <xsl:template match="text()" priority="-1" mode="M13"/>
+   <xsl:template match="@*|node()" priority="-2" mode="M13">
+      <xsl:apply-templates select="@*|*|comment()|processing-instruction()" mode="M13"/>
    </xsl:template>
 
    <!--PATTERN TableAllowedAttributes-->
 
 
 	<!--RULE -->
-<xsl:template match="html:table" priority="1000" mode="M12">
+<xsl:template match="html:table" priority="1000" mode="M14">
       <svrl:fired-rule xmlns:svrl="http://purl.oclc.org/dsdl/svrl" context="html:table"/>
 
 		    <!--ASSERT -->
@@ -611,18 +602,18 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-      <xsl:apply-templates select="@*|*|comment()|processing-instruction()" mode="M12"/>
+      <xsl:apply-templates select="@*|*|comment()|processing-instruction()" mode="M14"/>
    </xsl:template>
-   <xsl:template match="text()" priority="-1" mode="M12"/>
-   <xsl:template match="@*|node()" priority="-2" mode="M12">
-      <xsl:apply-templates select="@*|*|comment()|processing-instruction()" mode="M12"/>
+   <xsl:template match="text()" priority="-1" mode="M14"/>
+   <xsl:template match="@*|node()" priority="-2" mode="M14">
+      <xsl:apply-templates select="@*|*|comment()|processing-instruction()" mode="M14"/>
    </xsl:template>
 
    <!--PATTERN ColAllowedAttributes-->
 
 
 	<!--RULE -->
-<xsl:template match="html:col | html:colgroup" priority="1000" mode="M13">
+<xsl:template match="html:col | html:colgroup" priority="1000" mode="M15">
       <svrl:fired-rule xmlns:svrl="http://purl.oclc.org/dsdl/svrl" context="html:col | html:colgroup"/>
 
 		    <!--ASSERT -->
@@ -643,18 +634,18 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-      <xsl:apply-templates select="@*|*|comment()|processing-instruction()" mode="M13"/>
+      <xsl:apply-templates select="@*|*|comment()|processing-instruction()" mode="M15"/>
    </xsl:template>
-   <xsl:template match="text()" priority="-1" mode="M13"/>
-   <xsl:template match="@*|node()" priority="-2" mode="M13">
-      <xsl:apply-templates select="@*|*|comment()|processing-instruction()" mode="M13"/>
+   <xsl:template match="text()" priority="-1" mode="M15"/>
+   <xsl:template match="@*|node()" priority="-2" mode="M15">
+      <xsl:apply-templates select="@*|*|comment()|processing-instruction()" mode="M15"/>
    </xsl:template>
 
    <!--PATTERN ColAllowedAttributeValues-->
 
 
 	<!--RULE -->
-<xsl:template match="html:col | html:colgroup" priority="1000" mode="M14">
+<xsl:template match="html:col | html:colgroup" priority="1000" mode="M16">
       <svrl:fired-rule xmlns:svrl="http://purl.oclc.org/dsdl/svrl" context="html:col | html:colgroup"/>
 
 		    <!--ASSERT -->
@@ -679,18 +670,18 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-      <xsl:apply-templates select="@*|*|comment()|processing-instruction()" mode="M14"/>
+      <xsl:apply-templates select="@*|*|comment()|processing-instruction()" mode="M16"/>
    </xsl:template>
-   <xsl:template match="text()" priority="-1" mode="M14"/>
-   <xsl:template match="@*|node()" priority="-2" mode="M14">
-      <xsl:apply-templates select="@*|*|comment()|processing-instruction()" mode="M14"/>
+   <xsl:template match="text()" priority="-1" mode="M16"/>
+   <xsl:template match="@*|node()" priority="-2" mode="M16">
+      <xsl:apply-templates select="@*|*|comment()|processing-instruction()" mode="M16"/>
    </xsl:template>
 
    <!--PATTERN RowAllowedElements-->
 
 
 	<!--RULE -->
-<xsl:template match="html:tr" priority="1000" mode="M15">
+<xsl:template match="html:tr" priority="1000" mode="M17">
       <svrl:fired-rule xmlns:svrl="http://purl.oclc.org/dsdl/svrl" context="html:tr"/>
 
 		    <!--ASSERT -->
@@ -711,18 +702,18 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-      <xsl:apply-templates select="@*|*|comment()|processing-instruction()" mode="M15"/>
+      <xsl:apply-templates select="@*|*|comment()|processing-instruction()" mode="M17"/>
    </xsl:template>
-   <xsl:template match="text()" priority="-1" mode="M15"/>
-   <xsl:template match="@*|node()" priority="-2" mode="M15">
-      <xsl:apply-templates select="@*|*|comment()|processing-instruction()" mode="M15"/>
+   <xsl:template match="text()" priority="-1" mode="M17"/>
+   <xsl:template match="@*|node()" priority="-2" mode="M17">
+      <xsl:apply-templates select="@*|*|comment()|processing-instruction()" mode="M17"/>
    </xsl:template>
 
    <!--PATTERN RowAllowedAttributeValues-->
 
 
 	<!--RULE -->
-<xsl:template match="tr" priority="1000" mode="M16">
+<xsl:template match="tr" priority="1000" mode="M18">
       <svrl:fired-rule xmlns:svrl="http://purl.oclc.org/dsdl/svrl" context="tr"/>
 
 		    <!--ASSERT -->
@@ -747,18 +738,18 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-      <xsl:apply-templates select="@*|*|comment()|processing-instruction()" mode="M16"/>
+      <xsl:apply-templates select="@*|*|comment()|processing-instruction()" mode="M18"/>
    </xsl:template>
-   <xsl:template match="text()" priority="-1" mode="M16"/>
-   <xsl:template match="@*|node()" priority="-2" mode="M16">
-      <xsl:apply-templates select="@*|*|comment()|processing-instruction()" mode="M16"/>
+   <xsl:template match="text()" priority="-1" mode="M18"/>
+   <xsl:template match="@*|node()" priority="-2" mode="M18">
+      <xsl:apply-templates select="@*|*|comment()|processing-instruction()" mode="M18"/>
    </xsl:template>
 
    <!--PATTERN CellAllowedElements-->
 
 
 	<!--RULE -->
-<xsl:template match="html:td" priority="1000" mode="M17">
+<xsl:template match="html:td" priority="1000" mode="M19">
       <svrl:fired-rule xmlns:svrl="http://purl.oclc.org/dsdl/svrl" context="html:td"/>
 
 		    <!--ASSERT -->
@@ -779,18 +770,18 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-      <xsl:apply-templates select="@*|*|comment()|processing-instruction()" mode="M17"/>
+      <xsl:apply-templates select="@*|*|comment()|processing-instruction()" mode="M19"/>
    </xsl:template>
-   <xsl:template match="text()" priority="-1" mode="M17"/>
-   <xsl:template match="@*|node()" priority="-2" mode="M17">
-      <xsl:apply-templates select="@*|*|comment()|processing-instruction()" mode="M17"/>
+   <xsl:template match="text()" priority="-1" mode="M19"/>
+   <xsl:template match="@*|node()" priority="-2" mode="M19">
+      <xsl:apply-templates select="@*|*|comment()|processing-instruction()" mode="M19"/>
    </xsl:template>
 
    <!--PATTERN CellAllowedAttributes-->
 
 
 	<!--RULE -->
-<xsl:template match="html:td" priority="1000" mode="M18">
+<xsl:template match="html:td" priority="1000" mode="M20">
       <svrl:fired-rule xmlns:svrl="http://purl.oclc.org/dsdl/svrl" context="html:td"/>
 
 		    <!--ASSERT -->
@@ -811,18 +802,18 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-      <xsl:apply-templates select="@*|*|comment()|processing-instruction()" mode="M18"/>
+      <xsl:apply-templates select="@*|*|comment()|processing-instruction()" mode="M20"/>
    </xsl:template>
-   <xsl:template match="text()" priority="-1" mode="M18"/>
-   <xsl:template match="@*|node()" priority="-2" mode="M18">
-      <xsl:apply-templates select="@*|*|comment()|processing-instruction()" mode="M18"/>
+   <xsl:template match="text()" priority="-1" mode="M20"/>
+   <xsl:template match="@*|node()" priority="-2" mode="M20">
+      <xsl:apply-templates select="@*|*|comment()|processing-instruction()" mode="M20"/>
    </xsl:template>
 
    <!--PATTERN CellAllowedAttributeValues-->
 
 
 	<!--RULE -->
-<xsl:template match="html:td" priority="1000" mode="M19">
+<xsl:template match="html:td" priority="1000" mode="M21">
       <svrl:fired-rule xmlns:svrl="http://purl.oclc.org/dsdl/svrl" context="html:td"/>
 
 		    <!--ASSERT -->
@@ -847,18 +838,18 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-      <xsl:apply-templates select="@*|*|comment()|processing-instruction()" mode="M19"/>
+      <xsl:apply-templates select="@*|*|comment()|processing-instruction()" mode="M21"/>
    </xsl:template>
-   <xsl:template match="text()" priority="-1" mode="M19"/>
-   <xsl:template match="@*|node()" priority="-2" mode="M19">
-      <xsl:apply-templates select="@*|*|comment()|processing-instruction()" mode="M19"/>
+   <xsl:template match="text()" priority="-1" mode="M21"/>
+   <xsl:template match="@*|node()" priority="-2" mode="M21">
+      <xsl:apply-templates select="@*|*|comment()|processing-instruction()" mode="M21"/>
    </xsl:template>
 
    <!--PATTERN CellAllowedAttributeValueNotAlsoOnRowIf there is already class="rule-below" on tr, don't allow this on td-->
 <svrl:text xmlns:svrl="http://purl.oclc.org/dsdl/svrl">If there is already class="rule-below" on tr, don't allow this on td</svrl:text>
 
 	  <!--RULE -->
-<xsl:template match="tr[@class = 'rule-below']/td" priority="1000" mode="M20">
+<xsl:template match="tr[@class = 'rule-below']/td" priority="1000" mode="M22">
       <svrl:fired-rule xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
                        context="tr[@class = 'rule-below']/td"/>
 
@@ -874,18 +865,18 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-      <xsl:apply-templates select="@*|*|comment()|processing-instruction()" mode="M20"/>
+      <xsl:apply-templates select="@*|*|comment()|processing-instruction()" mode="M22"/>
    </xsl:template>
-   <xsl:template match="text()" priority="-1" mode="M20"/>
-   <xsl:template match="@*|node()" priority="-2" mode="M20">
-      <xsl:apply-templates select="@*|*|comment()|processing-instruction()" mode="M20"/>
+   <xsl:template match="text()" priority="-1" mode="M22"/>
+   <xsl:template match="@*|node()" priority="-2" mode="M22">
+      <xsl:apply-templates select="@*|*|comment()|processing-instruction()" mode="M22"/>
    </xsl:template>
 
    <!--PATTERN InlineMarkupAllowedElements-->
 
 
 	<!--RULE -->
-<xsl:template match="html:p|html:sub|html:sup|html:b|html:i" priority="1000" mode="M21">
+<xsl:template match="html:p|html:sub|html:sup|html:b|html:i" priority="1000" mode="M23">
       <svrl:fired-rule xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
                        context="html:p|html:sub|html:sup|html:b|html:i"/>
 
@@ -907,27 +898,27 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-      <xsl:apply-templates select="@*|*|comment()|processing-instruction()" mode="M21"/>
+      <xsl:apply-templates select="@*|*|comment()|processing-instruction()" mode="M23"/>
    </xsl:template>
-   <xsl:template match="text()" priority="-1" mode="M21"/>
-   <xsl:template match="@*|node()" priority="-2" mode="M21">
-      <xsl:apply-templates select="@*|*|comment()|processing-instruction()" mode="M21"/>
+   <xsl:template match="text()" priority="-1" mode="M23"/>
+   <xsl:template match="@*|node()" priority="-2" mode="M23">
+      <xsl:apply-templates select="@*|*|comment()|processing-instruction()" mode="M23"/>
    </xsl:template>
 
    <!--PATTERN InlineMarkupExclusions-->
 
 
 	<!--RULE -->
-<xsl:template match="html:sub|html:sup|html:b|html:i" priority="1000" mode="M22">
+<xsl:template match="html:sub|html:sup|html:b|html:i" priority="1000" mode="M24">
       <svrl:fired-rule xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
                        context="html:sub|html:sup|html:b|html:i"/>
 
 		    <!--ASSERT -->
 <xsl:choose>
-         <xsl:when test="not(.//*[node-name(.) = (for $qn in tokenize('html:sub|html:sup|html:b|html:i', '\s*[|]\s*') return QName($nsuri, $qn))])"/>
+         <xsl:when test="not(.//*[node-name(.) = node-name(current())])"/>
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
-                                test="not(.//*[node-name(.) = (for $qn in tokenize('html:sub|html:sup|html:b|html:i', '\s*[|]\s*') return QName($nsuri, $qn))])">
+                                test="not(.//*[node-name(.) = node-name(current())])">
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
@@ -937,57 +928,25 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-      <xsl:apply-templates select="@*|*|comment()|processing-instruction()" mode="M22"/>
+      <xsl:apply-templates select="@*|*|comment()|processing-instruction()" mode="M24"/>
    </xsl:template>
-   <xsl:template match="text()" priority="-1" mode="M22"/>
-   <xsl:template match="@*|node()" priority="-2" mode="M22">
-      <xsl:apply-templates select="@*|*|comment()|processing-instruction()" mode="M22"/>
-   </xsl:template>
-
-   <!--PATTERN EmphasisMandatoryAttributes-->
-
-
-	<!--RULE -->
-<xsl:template match="emphasis" priority="1000" mode="M23">
-      <svrl:fired-rule xmlns:svrl="http://purl.oclc.org/dsdl/svrl" context="emphasis"/>
-
-		    <!--ASSERT -->
-<xsl:choose>
-         <xsl:when test="every $m in tokenize('role', '\s+') satisfies (some $a in @* satisfies (name($a) = $m))"/>
-         <xsl:otherwise>
-            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
-                                test="every $m in tokenize('role', '\s+') satisfies (some $a in @* satisfies (name($a) = $m))">
-               <xsl:attribute name="location">
-                  <xsl:apply-templates select="." mode="schematron-select-full-path"/>
-               </xsl:attribute>
-               <svrl:text>Attributes (<xsl:text/>
-                  <xsl:value-of select="'role'"/>
-                  <xsl:text/>) are mandatory in this context. Found: <xsl:text/>
-                  <xsl:value-of select="for $a in @* return name($a)"/>
-                  <xsl:text/>
-               </svrl:text>
-            </svrl:failed-assert>
-         </xsl:otherwise>
-      </xsl:choose>
-      <xsl:apply-templates select="@*|*|comment()|processing-instruction()" mode="M23"/>
-   </xsl:template>
-   <xsl:template match="text()" priority="-1" mode="M23"/>
-   <xsl:template match="@*|node()" priority="-2" mode="M23">
-      <xsl:apply-templates select="@*|*|comment()|processing-instruction()" mode="M23"/>
+   <xsl:template match="text()" priority="-1" mode="M24"/>
+   <xsl:template match="@*|node()" priority="-2" mode="M24">
+      <xsl:apply-templates select="@*|*|comment()|processing-instruction()" mode="M24"/>
    </xsl:template>
 
    <!--PATTERN TextEquations should be in LaTeX -->
 <svrl:text xmlns:svrl="http://purl.oclc.org/dsdl/svrl">Equations should be in LaTeX </svrl:text>
 
 	  <!--RULE -->
-<xsl:template match="html:p" priority="1000" mode="M24">
+<xsl:template match="html:p" priority="1000" mode="M25">
       <svrl:fired-rule xmlns:svrl="http://purl.oclc.org/dsdl/svrl" context="html:p"/>
 
 		    <!--ASSERT -->
 <xsl:choose>
-         <xsl:when test="not(matches(., '[=∀-⋿]'))"/>
+         <xsl:when test="not(matches(., '[=&lt;&gt;∀-∑∓-⋿]'))"/>
          <xsl:otherwise>
-            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="not(matches(., '[=∀-⋿]'))">
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="not(matches(., '[=&lt;&gt;∀-∑∓-⋿]'))">
                <xsl:attribute name="id">TextNoEquations</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
@@ -996,10 +955,10 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-      <xsl:apply-templates select="@*|*|comment()|processing-instruction()" mode="M24"/>
+      <xsl:apply-templates select="@*|*|comment()|processing-instruction()" mode="M25"/>
    </xsl:template>
-   <xsl:template match="text()" priority="-1" mode="M24"/>
-   <xsl:template match="@*|node()" priority="-2" mode="M24">
-      <xsl:apply-templates select="@*|*|comment()|processing-instruction()" mode="M24"/>
+   <xsl:template match="text()" priority="-1" mode="M25"/>
+   <xsl:template match="@*|node()" priority="-2" mode="M25">
+      <xsl:apply-templates select="@*|*|comment()|processing-instruction()" mode="M25"/>
    </xsl:template>
 </xsl:stylesheet>

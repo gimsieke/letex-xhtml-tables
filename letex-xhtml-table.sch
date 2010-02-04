@@ -1,9 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:schema
   xmlns:s="http://purl.oclc.org/dsdl/schematron" 
-  queryBinding="xslt2">
+  queryBinding="xslt2"
+  defaultPhase="#ALL">
 
    <s:title>ISO Schematron rules for Dubbel Table Digitization content checking</s:title>
+
+   <s:phase id="err">
+      <s:active pattern="HTML" />
+      <s:active pattern="HeadAllowedElements" />
+      <s:active pattern="Head" />
+      <s:active pattern="LinkAllowedAttributes" />
+      <s:active pattern="HeadAllowedAttributeValues" />
+      <s:active pattern="BodyAllowedElements" />
+      <s:active pattern="TableAllowedElements" />
+      <s:active pattern="TableAllowedAttributes" />
+      <s:active pattern="ColAllowedAttributes" />
+      <s:active pattern="ColAllowedAttributeValues" />
+      <s:active pattern="RowAllowedElements" />
+      <s:active pattern="RowAllowedAttributeValues" />
+      <s:active pattern="CellAllowedElements" />
+      <s:active pattern="CellAllowedAttributes" />
+      <s:active pattern="CellAllowedAttributeValues" />
+      <s:active pattern="CellAllowedAttributeValueNotAlsoOnRow" />
+      <s:active pattern="InlineMarkupAllowedElements" />
+      <s:active pattern="InlineMarkupExclusions" />
+   </s:phase>
+
+   <s:phase id="wrn">
+      <s:active pattern="Text" />
+   </s:phase>
 
    <s:ns prefix="html" uri="http://www.w3.org/1999/xhtml" />
    <s:let name="nsuri" value="'http://www.w3.org/1999/xhtml'" />
@@ -38,7 +64,7 @@
 
    <s:pattern id="Exclusion" abstract="true">
       <s:rule context="$parent-name-pattern">
-         <s:assert test="not(.//*[node-name(.) = (for $qn in tokenize('$parent-name-pattern', '\s*[|]\s*') return QName($nsuri, $qn))])">Element <s:value-of select="'$parent-name-pattern'"/> must not contain itself as descendant.</s:assert>
+         <s:assert test="not(.//*[node-name(.) = node-name(current())])">Element <s:value-of select="'$parent-name-pattern'"/> must not contain itself as descendant.</s:assert>
       </s:rule>
    </s:pattern>
 
@@ -157,16 +183,10 @@
       <s:param name="parent-name-pattern" value="html:sub|html:sup|html:b|html:i" />
    </s:pattern>
 
-   <s:pattern id="EmphasisMandatoryAttributes" is-a="MandatoryAttributes">
-      <s:title>Emphasis must have a role attribute</s:title>
-      <s:param name="element-name" value="emphasis" />
-      <s:param name="attribute-names" value="role" />
-   </s:pattern>
-
    <s:pattern id="Text">
       <s:title>Equations should be in LaTeX </s:title>
       <s:rule context="html:p">
-         <s:assert test="not(matches(., '[=&#x2200;-&#x22ff;]'))" id="TextNoEquations">Please consider using LaTeX markup for equations (for proper spacing, etc.)</s:assert>
+         <s:assert test="not(matches(., '[=&lt;&gt;&#x2200;-&#x2211;&#x2213;-&#x22ff;]'))" id="TextNoEquations">Please consider using LaTeX markup for equations (for proper spacing, etc.)</s:assert>
       </s:rule>
    </s:pattern>
 
