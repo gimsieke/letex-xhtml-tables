@@ -44,6 +44,7 @@
         <xsl:value-of select="distinct-values(//svrl:active-pattern/@document)"/>
       </xsl:otherwise>
     </xsl:choose>
+    <xsl:text>&#xa;</xsl:text>
   </xsl:template>
 
 </xsl:stylesheet>

@@ -25,6 +25,8 @@
       <s:active pattern="CellAllowedAttributeValueNotAlsoOnRow" />
       <s:active pattern="InlineMarkupAllowedElements" />
       <s:active pattern="InlineMarkupExclusions" />
+      <s:active pattern="EquationImageAllowedAttributes" />
+      <s:active pattern="NonEquationImagesMustBePresent" />
    </s:phase>
 
    <s:phase id="wrn">
@@ -32,7 +34,9 @@
    </s:phase>
 
    <s:ns prefix="html" uri="http://www.w3.org/1999/xhtml" />
-   <s:let name="nsuri" value="'http://www.w3.org/1999/xhtml'" />
+   <s:let name="ns-uri" value="'http://www.w3.org/1999/xhtml'" />
+
+   <s:let name="base-uri" value="document-uri(/)" />
 
    <s:p>Copyright (C) 2010, le-tex publishing services GmbH</s:p>
 
@@ -40,7 +44,7 @@
 
    <s:pattern id="AllowedElements" abstract="true">
       <s:rule context="$parent-name-pattern">
-         <s:assert test="every $c in * satisfies (node-name($c) = (for $n in tokenize('$child-names', '\s+') return QName($nsuri, $n)))">Only elements (<s:value-of select="'$child-names'"/>) are allowed in this context. Found: <s:value-of select="distinct-values(*[not(string(node-name(.)) = tokenize('$child-names', '\s+'))]/node-name(.))" /></s:assert>
+         <s:assert test="every $c in * satisfies (node-name($c) = (for $n in tokenize('$child-names', '\s+') return QName($ns-uri, $n)))">Only elements (<s:value-of select="'$child-names'"/>) are allowed in this context. Found: <s:value-of select="distinct-values(*[not(string(node-name(.)) = tokenize('$child-names', '\s+'))]/node-name(.))" /></s:assert>
       </s:rule>
    </s:pattern>
 
@@ -72,7 +76,7 @@
    <s:pattern id="HTML">
       <s:title>Document type</s:title>
       <s:rule context="/*">
-         <s:assert test="node-name(.) = QName($nsuri, 'html')" id="root">The root element must be 'html' in the namespace '<s:value-of select="$nsuri"/>'. Found: '<s:value-of select="local-name(.)" />' in the namespace '<s:value-of select="namespace-uri-from-QName(node-name(.))" />'.</s:assert>
+         <s:assert test="node-name(.) = QName($ns-uri, 'html')" id="root">The root element must be 'html' in the namespace '<s:value-of select="$ns-uri"/>'. Found: '<s:value-of select="local-name(.)" />' in the namespace '<s:value-of select="namespace-uri-from-QName(node-name(.))" />'.</s:assert>
       </s:rule>
    </s:pattern>
 
@@ -192,7 +196,22 @@
          <s:assert test="starts-with(@src, 'ieq_')" id="NoInlineEquationPrefix">If this is a LaTeX inline equation, please refer to a @src file whose name starts with 'ieq_'</s:assert>
          <s:assert test="ends-with(@src, '.png')" id="NoInlineEquationPrefix">If this is a LaTeX inline equation, please refer to a PNG @src file whose name ends with '.png'</s:assert>
       </s:rule>
+      <s:rule context="html:img[starts-with(@src, 'ieq_')]">
+         <s:assert test="not(matches(@alt, '^\s*$'))" id="EmptyLaTeX">LaTeX inline equation should not be empty</s:assert>
+      </s:rule>
    </s:pattern>
 
+   <s:pattern id="EquationImageAllowedAttributes" is-a="AllowedAttributes">
+      <s:title>Equation images may have a src and an alt attribute (and nothing else)</s:title>
+      <s:param name="element-name" value="html:img[starts-with(@src, 'ieq_')]" />
+      <s:param name="attribute-names" value="src alt" />
+   </s:pattern>
+
+   <s:pattern id="NonEquationImagesMustBePresent">
+      <s:title>Non-equation images must be present</s:title>
+      <s:rule context="html:img[not(starts-with(@src, 'ieq_'))]">
+         <s:assert test="unparsed-text-available(resolve-uri(@src, $base-uri))" id="ImageMissing">The non-equation image <s:value-of select="@src"/> must be present at their @src location.</s:assert>
+      </s:rule>
+   </s:pattern>
 
 </s:schema>
