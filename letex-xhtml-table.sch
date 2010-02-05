@@ -28,7 +28,7 @@
    </s:phase>
 
    <s:phase id="wrn">
-      <s:active pattern="Text" />
+      <s:active pattern="MarkupThatShouldBeLaTeX" />
    </s:phase>
 
    <s:ns prefix="html" uri="http://www.w3.org/1999/xhtml" />
@@ -183,11 +183,16 @@
       <s:param name="parent-name-pattern" value="html:sub|html:sup|html:b|html:i" />
    </s:pattern>
 
-   <s:pattern id="Text">
-      <s:title>Equations should be in LaTeX </s:title>
+   <s:pattern id="MarkupThatShouldBeLaTeX">
+      <s:title>Text and images that look like equations</s:title>
       <s:rule context="html:p">
          <s:assert test="not(matches(., '[=&lt;&gt;&#x2200;-&#x2211;&#x2213;-&#x22ff;]'))" id="TextNoEquations">Please consider using LaTeX markup for equations (for proper spacing, etc.)</s:assert>
       </s:rule>
+      <s:rule context="html:img[matches(@alt, '[$]')]">
+         <s:assert test="starts-with(@src, 'ieq_')" id="NoInlineEquationPrefix">If this is a LaTeX inline equation, please refer to a @src file whose name starts with 'ieq_'</s:assert>
+         <s:assert test="ends-with(@src, '.png')" id="NoInlineEquationPrefix">If this is a LaTeX inline equation, please refer to a PNG @src file whose name ends with '.png'</s:assert>
+      </s:rule>
    </s:pattern>
+
 
 </s:schema>

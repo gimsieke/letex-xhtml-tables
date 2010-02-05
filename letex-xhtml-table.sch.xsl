@@ -340,8 +340,8 @@
             <xsl:attribute name="document">
                <xsl:value-of select="document-uri(/)"/>
             </xsl:attribute>
-            <xsl:attribute name="id">Text</xsl:attribute>
-            <xsl:attribute name="name">Equations should be in LaTeX </xsl:attribute>
+            <xsl:attribute name="id">MarkupThatShouldBeLaTeX</xsl:attribute>
+            <xsl:attribute name="name">Text and images that look like equations</xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
          <xsl:apply-templates select="/" mode="M25"/>
@@ -379,11 +379,11 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-      <xsl:apply-templates select="@*|*|comment()|processing-instruction()" mode="M7"/>
+      <xsl:apply-templates select="@*|*" mode="M7"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M7"/>
    <xsl:template match="@*|node()" priority="-2" mode="M7">
-      <xsl:apply-templates select="@*|*|comment()|processing-instruction()" mode="M7"/>
+      <xsl:apply-templates select="@*|*" mode="M7"/>
    </xsl:template>
 
    <!--PATTERN HeadAllowedElements-->
@@ -411,11 +411,11 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-      <xsl:apply-templates select="@*|*|comment()|processing-instruction()" mode="M8"/>
+      <xsl:apply-templates select="@*|*" mode="M8"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M8"/>
    <xsl:template match="@*|node()" priority="-2" mode="M8">
-      <xsl:apply-templates select="@*|*|comment()|processing-instruction()" mode="M8"/>
+      <xsl:apply-templates select="@*|*" mode="M8"/>
    </xsl:template>
 
    <!--PATTERN HeadMeta info-->
@@ -438,11 +438,11 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-      <xsl:apply-templates select="@*|*|comment()|processing-instruction()" mode="M9"/>
+      <xsl:apply-templates select="@*|*" mode="M9"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M9"/>
    <xsl:template match="@*|node()" priority="-2" mode="M9">
-      <xsl:apply-templates select="@*|*|comment()|processing-instruction()" mode="M9"/>
+      <xsl:apply-templates select="@*|*" mode="M9"/>
    </xsl:template>
 
    <!--PATTERN LinkAllowedAttributes-->
@@ -470,11 +470,11 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-      <xsl:apply-templates select="@*|*|comment()|processing-instruction()" mode="M10"/>
+      <xsl:apply-templates select="@*|*" mode="M10"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M10"/>
    <xsl:template match="@*|node()" priority="-2" mode="M10">
-      <xsl:apply-templates select="@*|*|comment()|processing-instruction()" mode="M10"/>
+      <xsl:apply-templates select="@*|*" mode="M10"/>
    </xsl:template>
 
    <!--PATTERN HeadAllowedAttributeValues-->
@@ -506,11 +506,11 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-      <xsl:apply-templates select="@*|*|comment()|processing-instruction()" mode="M11"/>
+      <xsl:apply-templates select="@*|*" mode="M11"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M11"/>
    <xsl:template match="@*|node()" priority="-2" mode="M11">
-      <xsl:apply-templates select="@*|*|comment()|processing-instruction()" mode="M11"/>
+      <xsl:apply-templates select="@*|*" mode="M11"/>
    </xsl:template>
 
    <!--PATTERN BodyAllowedElements-->
@@ -538,11 +538,11 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-      <xsl:apply-templates select="@*|*|comment()|processing-instruction()" mode="M12"/>
+      <xsl:apply-templates select="@*|*" mode="M12"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M12"/>
    <xsl:template match="@*|node()" priority="-2" mode="M12">
-      <xsl:apply-templates select="@*|*|comment()|processing-instruction()" mode="M12"/>
+      <xsl:apply-templates select="@*|*" mode="M12"/>
    </xsl:template>
 
    <!--PATTERN TableAllowedElements-->
@@ -570,11 +570,11 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-      <xsl:apply-templates select="@*|*|comment()|processing-instruction()" mode="M13"/>
+      <xsl:apply-templates select="@*|*" mode="M13"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M13"/>
    <xsl:template match="@*|node()" priority="-2" mode="M13">
-      <xsl:apply-templates select="@*|*|comment()|processing-instruction()" mode="M13"/>
+      <xsl:apply-templates select="@*|*" mode="M13"/>
    </xsl:template>
 
    <!--PATTERN TableAllowedAttributes-->
@@ -602,11 +602,11 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-      <xsl:apply-templates select="@*|*|comment()|processing-instruction()" mode="M14"/>
+      <xsl:apply-templates select="@*|*" mode="M14"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M14"/>
    <xsl:template match="@*|node()" priority="-2" mode="M14">
-      <xsl:apply-templates select="@*|*|comment()|processing-instruction()" mode="M14"/>
+      <xsl:apply-templates select="@*|*" mode="M14"/>
    </xsl:template>
 
    <!--PATTERN ColAllowedAttributes-->
@@ -634,11 +634,11 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-      <xsl:apply-templates select="@*|*|comment()|processing-instruction()" mode="M15"/>
+      <xsl:apply-templates select="@*|*" mode="M15"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M15"/>
    <xsl:template match="@*|node()" priority="-2" mode="M15">
-      <xsl:apply-templates select="@*|*|comment()|processing-instruction()" mode="M15"/>
+      <xsl:apply-templates select="@*|*" mode="M15"/>
    </xsl:template>
 
    <!--PATTERN ColAllowedAttributeValues-->
@@ -670,11 +670,11 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-      <xsl:apply-templates select="@*|*|comment()|processing-instruction()" mode="M16"/>
+      <xsl:apply-templates select="@*|*" mode="M16"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M16"/>
    <xsl:template match="@*|node()" priority="-2" mode="M16">
-      <xsl:apply-templates select="@*|*|comment()|processing-instruction()" mode="M16"/>
+      <xsl:apply-templates select="@*|*" mode="M16"/>
    </xsl:template>
 
    <!--PATTERN RowAllowedElements-->
@@ -702,11 +702,11 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-      <xsl:apply-templates select="@*|*|comment()|processing-instruction()" mode="M17"/>
+      <xsl:apply-templates select="@*|*" mode="M17"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M17"/>
    <xsl:template match="@*|node()" priority="-2" mode="M17">
-      <xsl:apply-templates select="@*|*|comment()|processing-instruction()" mode="M17"/>
+      <xsl:apply-templates select="@*|*" mode="M17"/>
    </xsl:template>
 
    <!--PATTERN RowAllowedAttributeValues-->
@@ -738,11 +738,11 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-      <xsl:apply-templates select="@*|*|comment()|processing-instruction()" mode="M18"/>
+      <xsl:apply-templates select="@*|*" mode="M18"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M18"/>
    <xsl:template match="@*|node()" priority="-2" mode="M18">
-      <xsl:apply-templates select="@*|*|comment()|processing-instruction()" mode="M18"/>
+      <xsl:apply-templates select="@*|*" mode="M18"/>
    </xsl:template>
 
    <!--PATTERN CellAllowedElements-->
@@ -770,11 +770,11 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-      <xsl:apply-templates select="@*|*|comment()|processing-instruction()" mode="M19"/>
+      <xsl:apply-templates select="@*|*" mode="M19"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M19"/>
    <xsl:template match="@*|node()" priority="-2" mode="M19">
-      <xsl:apply-templates select="@*|*|comment()|processing-instruction()" mode="M19"/>
+      <xsl:apply-templates select="@*|*" mode="M19"/>
    </xsl:template>
 
    <!--PATTERN CellAllowedAttributes-->
@@ -802,11 +802,11 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-      <xsl:apply-templates select="@*|*|comment()|processing-instruction()" mode="M20"/>
+      <xsl:apply-templates select="@*|*" mode="M20"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M20"/>
    <xsl:template match="@*|node()" priority="-2" mode="M20">
-      <xsl:apply-templates select="@*|*|comment()|processing-instruction()" mode="M20"/>
+      <xsl:apply-templates select="@*|*" mode="M20"/>
    </xsl:template>
 
    <!--PATTERN CellAllowedAttributeValues-->
@@ -838,11 +838,11 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-      <xsl:apply-templates select="@*|*|comment()|processing-instruction()" mode="M21"/>
+      <xsl:apply-templates select="@*|*" mode="M21"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M21"/>
    <xsl:template match="@*|node()" priority="-2" mode="M21">
-      <xsl:apply-templates select="@*|*|comment()|processing-instruction()" mode="M21"/>
+      <xsl:apply-templates select="@*|*" mode="M21"/>
    </xsl:template>
 
    <!--PATTERN CellAllowedAttributeValueNotAlsoOnRowIf there is already class="rule-below" on tr, don't allow this on td-->
@@ -865,11 +865,11 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-      <xsl:apply-templates select="@*|*|comment()|processing-instruction()" mode="M22"/>
+      <xsl:apply-templates select="@*|*" mode="M22"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M22"/>
    <xsl:template match="@*|node()" priority="-2" mode="M22">
-      <xsl:apply-templates select="@*|*|comment()|processing-instruction()" mode="M22"/>
+      <xsl:apply-templates select="@*|*" mode="M22"/>
    </xsl:template>
 
    <!--PATTERN InlineMarkupAllowedElements-->
@@ -898,11 +898,11 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-      <xsl:apply-templates select="@*|*|comment()|processing-instruction()" mode="M23"/>
+      <xsl:apply-templates select="@*|*" mode="M23"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M23"/>
    <xsl:template match="@*|node()" priority="-2" mode="M23">
-      <xsl:apply-templates select="@*|*|comment()|processing-instruction()" mode="M23"/>
+      <xsl:apply-templates select="@*|*" mode="M23"/>
    </xsl:template>
 
    <!--PATTERN InlineMarkupExclusions-->
@@ -928,18 +928,18 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-      <xsl:apply-templates select="@*|*|comment()|processing-instruction()" mode="M24"/>
+      <xsl:apply-templates select="@*|*" mode="M24"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M24"/>
    <xsl:template match="@*|node()" priority="-2" mode="M24">
-      <xsl:apply-templates select="@*|*|comment()|processing-instruction()" mode="M24"/>
+      <xsl:apply-templates select="@*|*" mode="M24"/>
    </xsl:template>
 
-   <!--PATTERN TextEquations should be in LaTeX -->
-<svrl:text xmlns:svrl="http://purl.oclc.org/dsdl/svrl">Equations should be in LaTeX </svrl:text>
+   <!--PATTERN MarkupThatShouldBeLaTeXText and images that look like equations-->
+<svrl:text xmlns:svrl="http://purl.oclc.org/dsdl/svrl">Text and images that look like equations</svrl:text>
 
 	  <!--RULE -->
-<xsl:template match="html:p" priority="1000" mode="M25">
+<xsl:template match="html:p" priority="1001" mode="M25">
       <svrl:fired-rule xmlns:svrl="http://purl.oclc.org/dsdl/svrl" context="html:p"/>
 
 		    <!--ASSERT -->
@@ -955,10 +955,45 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-      <xsl:apply-templates select="@*|*|comment()|processing-instruction()" mode="M25"/>
+      <xsl:apply-templates select="@*|*" mode="M25"/>
+   </xsl:template>
+
+	  <!--RULE -->
+<xsl:template match="html:img[matches(@alt, '[$]')]" priority="1000" mode="M25">
+      <svrl:fired-rule xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                       context="html:img[matches(@alt, '[$]')]"/>
+
+		    <!--ASSERT -->
+<xsl:choose>
+         <xsl:when test="starts-with(@src, 'ieq_')"/>
+         <xsl:otherwise>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="starts-with(@src, 'ieq_')">
+               <xsl:attribute name="id">NoInlineEquationPrefix</xsl:attribute>
+               <xsl:attribute name="location">
+                  <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+               </xsl:attribute>
+               <svrl:text>If this is a LaTeX inline equation, please refer to a @src file whose name starts with 'ieq_'</svrl:text>
+            </svrl:failed-assert>
+         </xsl:otherwise>
+      </xsl:choose>
+
+		    <!--ASSERT -->
+<xsl:choose>
+         <xsl:when test="ends-with(@src, '.png')"/>
+         <xsl:otherwise>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="ends-with(@src, '.png')">
+               <xsl:attribute name="id">NoInlineEquationPrefix</xsl:attribute>
+               <xsl:attribute name="location">
+                  <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+               </xsl:attribute>
+               <svrl:text>If this is a LaTeX inline equation, please refer to a PNG @src file whose name ends with '.png'</svrl:text>
+            </svrl:failed-assert>
+         </xsl:otherwise>
+      </xsl:choose>
+      <xsl:apply-templates select="@*|*" mode="M25"/>
    </xsl:template>
    <xsl:template match="text()" priority="-1" mode="M25"/>
    <xsl:template match="@*|node()" priority="-2" mode="M25">
-      <xsl:apply-templates select="@*|*|comment()|processing-instruction()" mode="M25"/>
+      <xsl:apply-templates select="@*|*" mode="M25"/>
    </xsl:template>
 </xsl:stylesheet>
