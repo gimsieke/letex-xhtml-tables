@@ -322,11 +322,38 @@
             <xsl:attribute name="document">
                <xsl:value-of select="document-uri(/)"/>
             </xsl:attribute>
+            <xsl:attribute name="id">OrderedListAllowedAttributes</xsl:attribute>
+            <xsl:attribute name="name">OrderedListAllowedAttributes</xsl:attribute>
+            <xsl:apply-templates/>
+         </svrl:active-pattern>
+         <xsl:apply-templates select="/" mode="M24"/>
+         <svrl:active-pattern>
+            <xsl:attribute name="document">
+               <xsl:value-of select="document-uri(/)"/>
+            </xsl:attribute>
+            <xsl:attribute name="id">OrderedListAllowedAttributeValues</xsl:attribute>
+            <xsl:attribute name="name">OrderedListAllowedAttributeValues</xsl:attribute>
+            <xsl:apply-templates/>
+         </svrl:active-pattern>
+         <xsl:apply-templates select="/" mode="M25"/>
+         <svrl:active-pattern>
+            <xsl:attribute name="document">
+               <xsl:value-of select="document-uri(/)"/>
+            </xsl:attribute>
+            <xsl:attribute name="id">UnorderedListsPlain</xsl:attribute>
+            <xsl:attribute name="name">ul may have no attributes</xsl:attribute>
+            <xsl:apply-templates/>
+         </svrl:active-pattern>
+         <xsl:apply-templates select="/" mode="M26"/>
+         <svrl:active-pattern>
+            <xsl:attribute name="document">
+               <xsl:value-of select="document-uri(/)"/>
+            </xsl:attribute>
             <xsl:attribute name="id">InlineMarkupAllowedElements</xsl:attribute>
             <xsl:attribute name="name">InlineMarkupAllowedElements</xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
-         <xsl:apply-templates select="/" mode="M24"/>
+         <xsl:apply-templates select="/" mode="M27"/>
          <svrl:active-pattern>
             <xsl:attribute name="document">
                <xsl:value-of select="document-uri(/)"/>
@@ -335,7 +362,7 @@
             <xsl:attribute name="name">InlineMarkupExclusions</xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
-         <xsl:apply-templates select="/" mode="M25"/>
+         <xsl:apply-templates select="/" mode="M28"/>
          <svrl:active-pattern>
             <xsl:attribute name="document">
                <xsl:value-of select="document-uri(/)"/>
@@ -344,7 +371,7 @@
             <xsl:attribute name="name">Text and images that look like equations</xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
-         <xsl:apply-templates select="/" mode="M26"/>
+         <xsl:apply-templates select="/" mode="M29"/>
          <svrl:active-pattern>
             <xsl:attribute name="document">
                <xsl:value-of select="document-uri(/)"/>
@@ -353,7 +380,7 @@
             <xsl:attribute name="name">EquationImageAllowedAttributes</xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
-         <xsl:apply-templates select="/" mode="M27"/>
+         <xsl:apply-templates select="/" mode="M30"/>
          <svrl:active-pattern>
             <xsl:attribute name="document">
                <xsl:value-of select="document-uri(/)"/>
@@ -362,7 +389,7 @@
             <xsl:attribute name="name">Non-equation images must be present</xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
-         <xsl:apply-templates select="/" mode="M28"/>
+         <xsl:apply-templates select="/" mode="M31"/>
       </svrl:schematron-output>
    </xsl:template>
 
@@ -669,10 +696,10 @@
 
 		    <!--ASSERT -->
 <xsl:choose>
-         <xsl:when test="if (@class) then matches(@class, '^rule-right$', 'x') else true()"/>
+         <xsl:when test="if (@class) then matches(@class, '^(rule-right|head)$', 'x') else true()"/>
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
-                                test="if (@class) then matches(@class, '^rule-right$', 'x') else true()">
+                                test="if (@class) then matches(@class, '^(rule-right|head)$', 'x') else true()">
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
@@ -681,7 +708,7 @@
                   <xsl:text/> of element <xsl:text/>
                   <xsl:value-of select="'html:col | html:colgroup'"/>
                   <xsl:text/>: value must match /<xsl:text/>
-                  <xsl:value-of select="'^rule-right$'"/>
+                  <xsl:value-of select="'^(rule-right|head)$'"/>
                   <xsl:text/>/. Found: <xsl:text/>
                   <xsl:value-of select="@class"/>
                   <xsl:text/>
@@ -773,17 +800,17 @@
 
 		    <!--ASSERT -->
 <xsl:choose>
-         <xsl:when test="every $c in * satisfies (node-name($c) = (for $n in tokenize('p', '\s+') return QName($ns-uri, $n)))"/>
+         <xsl:when test="every $c in * satisfies (node-name($c) = (for $n in tokenize('p ul ol', '\s+') return QName($ns-uri, $n)))"/>
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
-                                test="every $c in * satisfies (node-name($c) = (for $n in tokenize('p', '\s+') return QName($ns-uri, $n)))">
+                                test="every $c in * satisfies (node-name($c) = (for $n in tokenize('p ul ol', '\s+') return QName($ns-uri, $n)))">
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
                <svrl:text>Only elements (<xsl:text/>
-                  <xsl:value-of select="'p'"/>
+                  <xsl:value-of select="'p ul ol'"/>
                   <xsl:text/>) are allowed in this context. Found: <xsl:text/>
-                  <xsl:value-of select="distinct-values(*[not(string(node-name(.)) = tokenize('p', '\s+'))]/node-name(.))"/>
+                  <xsl:value-of select="distinct-values(*[not(string(node-name(.)) = tokenize('p ul ol', '\s+'))]/node-name(.))"/>
                   <xsl:text/>
                </svrl:text>
             </svrl:failed-assert>
@@ -891,11 +918,106 @@
       <xsl:apply-templates select="@*|*" mode="M23"/>
    </xsl:template>
 
+   <!--PATTERN OrderedListAllowedAttributes-->
+
+
+	<!--RULE -->
+<xsl:template match="html:ol" priority="1000" mode="M24">
+      <svrl:fired-rule xmlns:svrl="http://purl.oclc.org/dsdl/svrl" context="html:ol"/>
+
+		    <!--ASSERT -->
+<xsl:choose>
+         <xsl:when test="every $a in @* satisfies (name($a) = tokenize('class', '\s+'))"/>
+         <xsl:otherwise>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                test="every $a in @* satisfies (name($a) = tokenize('class', '\s+'))">
+               <xsl:attribute name="location">
+                  <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+               </xsl:attribute>
+               <svrl:text>Only attributes (<xsl:text/>
+                  <xsl:value-of select="'class'"/>
+                  <xsl:text/>) are allowed in this context. Found: <xsl:text/>
+                  <xsl:value-of select="for $a in @*[not(name() = tokenize('class', '\s+'))] return concat( name($a), '=', $a)"/>
+                  <xsl:text/>
+               </svrl:text>
+            </svrl:failed-assert>
+         </xsl:otherwise>
+      </xsl:choose>
+      <xsl:apply-templates select="@*|*" mode="M24"/>
+   </xsl:template>
+   <xsl:template match="text()" priority="-1" mode="M24"/>
+   <xsl:template match="@*|node()" priority="-2" mode="M24">
+      <xsl:apply-templates select="@*|*" mode="M24"/>
+   </xsl:template>
+
+   <!--PATTERN OrderedListAllowedAttributeValues-->
+
+
+	<!--RULE -->
+<xsl:template match="html:ol" priority="1000" mode="M25">
+      <svrl:fired-rule xmlns:svrl="http://purl.oclc.org/dsdl/svrl" context="html:ol"/>
+
+		    <!--ASSERT -->
+<xsl:choose>
+         <xsl:when test="if (@class) then matches(@class, '^(roman|alph|arabic)$', 'x') else true()"/>
+         <xsl:otherwise>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                test="if (@class) then matches(@class, '^(roman|alph|arabic)$', 'x') else true()">
+               <xsl:attribute name="location">
+                  <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+               </xsl:attribute>
+               <svrl:text>Attribute @<xsl:text/>
+                  <xsl:value-of select="'class'"/>
+                  <xsl:text/> of element <xsl:text/>
+                  <xsl:value-of select="'html:ol'"/>
+                  <xsl:text/>: value must match /<xsl:text/>
+                  <xsl:value-of select="'^(roman|alph|arabic)$'"/>
+                  <xsl:text/>/. Found: <xsl:text/>
+                  <xsl:value-of select="@class"/>
+                  <xsl:text/>
+               </svrl:text>
+            </svrl:failed-assert>
+         </xsl:otherwise>
+      </xsl:choose>
+      <xsl:apply-templates select="@*|*" mode="M25"/>
+   </xsl:template>
+   <xsl:template match="text()" priority="-1" mode="M25"/>
+   <xsl:template match="@*|node()" priority="-2" mode="M25">
+      <xsl:apply-templates select="@*|*" mode="M25"/>
+   </xsl:template>
+
+   <!--PATTERN UnorderedListsPlainul may have no attributes-->
+<svrl:text xmlns:svrl="http://purl.oclc.org/dsdl/svrl">ul may have no attributes</svrl:text>
+
+	  <!--RULE -->
+<xsl:template match="html:ul" priority="1000" mode="M26">
+      <svrl:fired-rule xmlns:svrl="http://purl.oclc.org/dsdl/svrl" context="html:ul"/>
+
+		    <!--ASSERT -->
+<xsl:choose>
+         <xsl:when test="not(@*)"/>
+         <xsl:otherwise>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl" test="not(@*)">
+               <xsl:attribute name="id">UnorderedListsNoAttributes</xsl:attribute>
+               <xsl:attribute name="location">
+                  <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+               </xsl:attribute>
+               <svrl:text>ul may not have an attribute</svrl:text>
+            </svrl:failed-assert>
+         </xsl:otherwise>
+      </xsl:choose>
+      <xsl:apply-templates select="@*|*" mode="M26"/>
+   </xsl:template>
+   <xsl:template match="text()" priority="-1" mode="M26"/>
+   <xsl:template match="@*|node()" priority="-2" mode="M26">
+      <xsl:apply-templates select="@*|*" mode="M26"/>
+   </xsl:template>
+
    <!--PATTERN InlineMarkupAllowedElements-->
 
 
 	<!--RULE -->
-<xsl:template match="html:p|html:sub|html:sup|html:b|html:i" priority="1000" mode="M24">
+<xsl:template match="html:p|html:sub|html:sup|html:b|html:i" priority="1000" mode="M27">
       <svrl:fired-rule xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
                        context="html:p|html:sub|html:sup|html:b|html:i"/>
 
@@ -917,18 +1039,18 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-      <xsl:apply-templates select="@*|*" mode="M24"/>
+      <xsl:apply-templates select="@*|*" mode="M27"/>
    </xsl:template>
-   <xsl:template match="text()" priority="-1" mode="M24"/>
-   <xsl:template match="@*|node()" priority="-2" mode="M24">
-      <xsl:apply-templates select="@*|*" mode="M24"/>
+   <xsl:template match="text()" priority="-1" mode="M27"/>
+   <xsl:template match="@*|node()" priority="-2" mode="M27">
+      <xsl:apply-templates select="@*|*" mode="M27"/>
    </xsl:template>
 
    <!--PATTERN InlineMarkupExclusions-->
 
 
 	<!--RULE -->
-<xsl:template match="html:sub|html:sup|html:b|html:i" priority="1000" mode="M25">
+<xsl:template match="html:sub|html:sup|html:b|html:i" priority="1000" mode="M28">
       <svrl:fired-rule xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
                        context="html:sub|html:sup|html:b|html:i"/>
 
@@ -947,18 +1069,18 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-      <xsl:apply-templates select="@*|*" mode="M25"/>
+      <xsl:apply-templates select="@*|*" mode="M28"/>
    </xsl:template>
-   <xsl:template match="text()" priority="-1" mode="M25"/>
-   <xsl:template match="@*|node()" priority="-2" mode="M25">
-      <xsl:apply-templates select="@*|*" mode="M25"/>
+   <xsl:template match="text()" priority="-1" mode="M28"/>
+   <xsl:template match="@*|node()" priority="-2" mode="M28">
+      <xsl:apply-templates select="@*|*" mode="M28"/>
    </xsl:template>
 
    <!--PATTERN MarkupThatShouldBeLaTeXText and images that look like equations-->
 <svrl:text xmlns:svrl="http://purl.oclc.org/dsdl/svrl">Text and images that look like equations</svrl:text>
 
 	  <!--RULE -->
-<xsl:template match="html:p" priority="1002" mode="M26">
+<xsl:template match="html:p" priority="1002" mode="M29">
       <svrl:fired-rule xmlns:svrl="http://purl.oclc.org/dsdl/svrl" context="html:p"/>
 
 		    <!--ASSERT -->
@@ -974,11 +1096,11 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-      <xsl:apply-templates select="@*|*" mode="M26"/>
+      <xsl:apply-templates select="@*|*" mode="M29"/>
    </xsl:template>
 
 	  <!--RULE -->
-<xsl:template match="html:img[matches(@alt, '[$]')]" priority="1001" mode="M26">
+<xsl:template match="html:img[matches(@alt, '[$]')]" priority="1001" mode="M29">
       <svrl:fired-rule xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
                        context="html:img[matches(@alt, '[$]')]"/>
 
@@ -1009,11 +1131,11 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-      <xsl:apply-templates select="@*|*" mode="M26"/>
+      <xsl:apply-templates select="@*|*" mode="M29"/>
    </xsl:template>
 
 	  <!--RULE -->
-<xsl:template match="html:img[starts-with(@src, 'ieq_')]" priority="1000" mode="M26">
+<xsl:template match="html:img[starts-with(@src, 'ieq_')]" priority="1000" mode="M29">
       <svrl:fired-rule xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
                        context="html:img[starts-with(@src, 'ieq_')]"/>
 
@@ -1030,18 +1152,18 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-      <xsl:apply-templates select="@*|*" mode="M26"/>
+      <xsl:apply-templates select="@*|*" mode="M29"/>
    </xsl:template>
-   <xsl:template match="text()" priority="-1" mode="M26"/>
-   <xsl:template match="@*|node()" priority="-2" mode="M26">
-      <xsl:apply-templates select="@*|*" mode="M26"/>
+   <xsl:template match="text()" priority="-1" mode="M29"/>
+   <xsl:template match="@*|node()" priority="-2" mode="M29">
+      <xsl:apply-templates select="@*|*" mode="M29"/>
    </xsl:template>
 
    <!--PATTERN EquationImageAllowedAttributes-->
 
 
 	<!--RULE -->
-<xsl:template match="html:img[starts-with(@src, 'ieq_')]" priority="1000" mode="M27">
+<xsl:template match="html:img[starts-with(@src, 'ieq_')]" priority="1000" mode="M30">
       <svrl:fired-rule xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
                        context="html:img[starts-with(@src, 'ieq_')]"/>
 
@@ -1063,18 +1185,18 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-      <xsl:apply-templates select="@*|*" mode="M27"/>
+      <xsl:apply-templates select="@*|*" mode="M30"/>
    </xsl:template>
-   <xsl:template match="text()" priority="-1" mode="M27"/>
-   <xsl:template match="@*|node()" priority="-2" mode="M27">
-      <xsl:apply-templates select="@*|*" mode="M27"/>
+   <xsl:template match="text()" priority="-1" mode="M30"/>
+   <xsl:template match="@*|node()" priority="-2" mode="M30">
+      <xsl:apply-templates select="@*|*" mode="M30"/>
    </xsl:template>
 
    <!--PATTERN NonEquationImagesMustBePresentNon-equation images must be present-->
 <svrl:text xmlns:svrl="http://purl.oclc.org/dsdl/svrl">Non-equation images must be present</svrl:text>
 
 	  <!--RULE -->
-<xsl:template match="html:img[not(starts-with(@src, 'ieq_'))]" priority="1000" mode="M28">
+<xsl:template match="html:img[not(starts-with(@src, 'ieq_'))]" priority="1000" mode="M31">
       <svrl:fired-rule xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
                        context="html:img[not(starts-with(@src, 'ieq_'))]"/>
 
@@ -1094,10 +1216,10 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-      <xsl:apply-templates select="@*|*" mode="M28"/>
+      <xsl:apply-templates select="@*|*" mode="M31"/>
    </xsl:template>
-   <xsl:template match="text()" priority="-1" mode="M28"/>
-   <xsl:template match="@*|node()" priority="-2" mode="M28">
-      <xsl:apply-templates select="@*|*" mode="M28"/>
+   <xsl:template match="text()" priority="-1" mode="M31"/>
+   <xsl:template match="@*|node()" priority="-2" mode="M31">
+      <xsl:apply-templates select="@*|*" mode="M31"/>
    </xsl:template>
 </xsl:stylesheet>

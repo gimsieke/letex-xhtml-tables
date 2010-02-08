@@ -1,11 +1,17 @@
 thead, tr.rule-below td, td.rule-below { 
-  border-bottom: 1px dotted black !important;
+  border-bottom: 1px dotted black;
 }
 
 tfoot { 
-  border-top: 3px solid black !important;
+  border-top: 3px solid black;
+  background-color:#e0e0e0 !important;
 }
 
-col.rule-right, td.rule-right { 
-  border-right: 1px dotted black !important;
+col.rule-right, col.head, td.rule-right { 
+  border-right: 1px dotted black;
 }
+
+colgroup.head, col.head, thead { 
+  background-color:#ccc !important;
+}
+

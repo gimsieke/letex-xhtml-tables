@@ -27,6 +27,11 @@
       <s:active pattern="InlineMarkupExclusions" />
       <s:active pattern="EquationImageAllowedAttributes" />
       <s:active pattern="NonEquationImagesMustBePresent" />
+      <s:active pattern="OrderedListAllowedAttributes" />
+      <s:active pattern="OrderedListAllowedAttributeValues" />
+      <s:active pattern="UnorderedListsPlain" />
+
+
    </s:phase>
 
    <s:phase id="wrn">
@@ -134,7 +139,7 @@
       <s:title>col or colgroup class attribute may only be 'rule-right</s:title>
       <s:param name="element-name" value="html:col | html:colgroup" />
       <s:param name="attribute-name" value="class" />
-      <s:param name="attribute-value-regex" value="^rule-right$" />
+      <s:param name="attribute-value-regex" value="^(rule-right|head)$" />
    </s:pattern>
 
    <s:pattern id="RowAllowedElements" is-a="AllowedElements">
@@ -153,7 +158,7 @@
    <s:pattern id="CellAllowedElements" is-a="AllowedElements">
       <s:title>Element 'td' allowed child elements</s:title>
       <s:param name="parent-name-pattern" value="html:td" />
-      <s:param name="child-names" value="p" />
+      <s:param name="child-names" value="p ul ol" />
    </s:pattern>
 
    <s:pattern id="CellAllowedAttributes" is-a="AllowedAttributes">
@@ -173,6 +178,26 @@
       <s:title>If there is already class="rule-below" on tr, don't allow this on td</s:title>
       <s:rule context="tr[@class = 'rule-below']/td">
          <s:assert test="not(@class = 'rule-below')">A table row with class="rule-below" must not contain a table cell with the same class attribute.</s:assert>
+      </s:rule>
+   </s:pattern>
+
+   <s:pattern id="OrderedListAllowedAttributes" is-a="AllowedAttributes">
+      <s:title>Ordered Lists may have a class attribute (and nothing else)</s:title>
+      <s:param name="element-name" value="html:ol" />
+      <s:param name="attribute-names" value="class" />
+   </s:pattern>
+
+   <s:pattern id="OrderedListAllowedAttributeValues" is-a="AllowedAttributeValues">
+      <s:title>ol class attribute may only be 'roman', 'alph' or 'arabic'</s:title>
+      <s:param name="element-name" value="html:ol" />
+      <s:param name="attribute-name" value="class" />
+      <s:param name="attribute-value-regex" value="^(roman|alph|arabic)$" />
+   </s:pattern>
+
+   <s:pattern id="UnorderedListsPlain">
+      <s:title>ul may have no attributes</s:title>
+      <s:rule context="html:ul">
+         <s:assert test="not(@*)" id="UnorderedListsNoAttributes">ul may not have an attribute</s:assert>
       </s:rule>
    </s:pattern>
 
