@@ -188,6 +188,9 @@ the GNU Lesser General Public License Version 2.1
 Author:
 Gerrit Imsieke, le-tex publishing services GmbH, Leipzig
 http://www.le-tex.de/
+Thanks to Stefan Krause (stf at snafu dot de) for the file-exists
+function.
+
 
 GNU Lesser General Public License Version 2.1
 =============================================

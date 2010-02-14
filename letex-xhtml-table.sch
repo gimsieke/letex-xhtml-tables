@@ -1,8 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:schema
   xmlns:s="http://purl.oclc.org/dsdl/schematron" 
+  xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+  xmlns:java-file="java:java.io.File"
+  xmlns:java-uri="java:java.net.URI"
+  xmlns:letex="http://www.le-tex.de/namespace"
   queryBinding="xslt2"
   defaultPhase="#ALL">
+
+   <s:ns prefix="html" uri="http://www.w3.org/1999/xhtml" />
+   <s:ns prefix="letex" uri="http://www.le-tex.de/namespace" />
+
+   <xsl:function name="letex:file-exists" as="xs:boolean">
+      <xsl:param name="uri" as="xs:string?"/>
+      <xsl:value-of select="java-file:exists(java-file:new(java-uri:new($uri)))"/>
+   </xsl:function>
+
 
    <s:title>ISO Schematron rules for Dubbel Table Digitization content checking</s:title>
 
@@ -38,7 +51,6 @@
       <s:active pattern="MarkupThatShouldBeLaTeX" />
    </s:phase>
 
-   <s:ns prefix="html" uri="http://www.w3.org/1999/xhtml" />
    <s:let name="ns-uri" value="'http://www.w3.org/1999/xhtml'" />
 
    <s:let name="base-uri" value="document-uri(/)" />
@@ -235,17 +247,11 @@
    <s:pattern id="NonEquationImagesMustBePresent">
       <s:title>Non-equation images must be present</s:title>
       <s:rule context="html:img[not(starts-with(@src, 'ieq_'))]">
-         <s:assert test="saxon:try(
-                           format-dateTime(
-                             saxon:last-modified(
-                               resolve-uri(
-                                 @src, 
-                                 $base-uri
-                               )
-                             ), 
-                             '[Y]'
-                           ),
-                           false()
+         <s:assert test="letex:file-exists(
+                           resolve-uri(
+                             @src, 
+                             $base-uri
+                           )
                          )" id="ImageMissing">The non-equation image <s:value-of select="@src"/> must be present at its @src location.</s:assert>
       </s:rule>
    </s:pattern>
