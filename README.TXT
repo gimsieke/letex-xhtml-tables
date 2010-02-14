@@ -22,8 +22,9 @@ tables in a standardized manner.
 
   * saxon
 
-    You need an XSLT 2 processor, for example saxon 9.2 HE,
+    You need a Java-based XSLT 2 processor, for example saxon 9.2 HE,
     http://saxon.sourceforge.net/#F9.1B
+    According to Stefan Krause, Altova should work, too.
   
     In the following, I assume that there is a saxon front-end script
     called 'saxon'.
