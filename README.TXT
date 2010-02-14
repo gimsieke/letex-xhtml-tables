@@ -117,33 +117,36 @@ java \
 file:/C:/cygwin/home/gerrit/letex-xhtml-tables/sample/u01t14.xhtml  
   ID:         TableAllowedAttributes  
   test:       every $a in @* satisfies (name($a) = tokenize('frame rules', '\s+'))
-    location: /html/body[1]/table[1]
+    location: /html/body/table
      message: Only attributes (frame rules) are allowed in this context. Found: border=0  
   ID:         RowAllowedElements  
-  test:       every $c in * satisfies (node-name($c) = (for $n in tokenize('td', '\s+') return QName($nsuri, $n)))
-    location: /html/body[1]/table[1]/thead[1]/tr[4]
+  test:       every $c in * satisfies (node-name($c) = (for $n in tokenize('td', '\s+') return QName($ns-uri, $n)))
+    location: /html/body/table/thead/tr[4]
      message: Only elements (td) are allowed in this context. Found: th  
   ID:         InlineMarkupExclusions  
-  test:       not(.//*[node-name(.) = (for $qn in tokenize('html:sub|html:sup|html:b|html:i', '\s*[|]\s*') return QName($nsuri, $qn))])
-    location: /html/body[1]/table[1]/thead[1]/tr[4]/th[1]/p[1]/i[1]
+  test:       not(.//*[node-name(.) = node-name(current())])
+    location: /html/body/table/thead/tr[4]/th/p/i
      message: Element html:sub|html:sup|html:b|html:i must not contain itself as descendant.  
-  ID:         Text  
-  title:      Equations should be in LaTeX   
-  test:       not(matches(., '[=∀-⋿]'))
-    location: /html/body[1]/table[1]/tbody[1]/tr[14]/td[3]/p[1]
+  ID:         MarkupThatShouldBeLaTeX  
+  title:      Text and images that look like equations  
+  test:       ends-with(@src, '.png')
+    location: /html/body/table/tbody/tr[14]/td[4]/p/img
+     message: If this is a LaTeX inline equation, please refer to a PNG @src file whose name ends with '.png'
+    location: /html/body/table/tbody/tr[14]/td[5]/p
      message: Please consider using LaTeX markup for equations (for proper spacing, etc.)
-    location: /html/body[1]/table[1]/tbody[1]/tr[14]/td[4]/p[1]
+    location: /html/body/table/tbody/tr[14]/td[6]/p
      message: Please consider using LaTeX markup for equations (for proper spacing, etc.)
-    location: /html/body[1]/table[1]/tbody[1]/tr[14]/td[5]/p[1]
+    location: /html/body/table/tbody/tr[14]/td[7]/p
      message: Please consider using LaTeX markup for equations (for proper spacing, etc.)
-    location: /html/body[1]/table[1]/tbody[1]/tr[14]/td[6]/p[1]
+    location: /html/body/table/tbody/tr[14]/td[8]/p
      message: Please consider using LaTeX markup for equations (for proper spacing, etc.)
-    location: /html/body[1]/table[1]/tbody[1]/tr[14]/td[7]/p[1]
-     message: Please consider using LaTeX markup for equations (for proper spacing, etc.)
-    location: /html/body[1]/table[1]/tbody[1]/tr[14]/td[8]/p[1]
-     message: Please consider using LaTeX markup for equations (for proper spacing, etc.)
-    location: /html/body[1]/table[1]/tbody[1]/tr[14]/td[9]/p[1]
-     message: Please consider using LaTeX markup for equations (for proper spacing, etc.)
+    location: /html/body/table/tbody/tr[14]/td[9]/p
+     message: Please consider using LaTeX markup for equations (for proper spacing, etc.)  
+  ID:         NonEquationImagesMustBePresent  
+  title:      Non-equation images must be present  
+  test:       saxon:try( format-dateTime( saxon:last-modified( resolve-uri( @src, $base-uri ) ), '[Y]' ), false() )
+    location: /html/body/table/tbody/tr[14]/td[3]/p/img
+     message: The non-equation image u01t14_002.jpg must be present at its @src location.
 
     It is desirable that the results are being patched into the XHTML
     file, for in-place diagnostic messages. Until we have implemented

@@ -1202,17 +1202,17 @@
 
 		    <!--ASSERT -->
 <xsl:choose>
-         <xsl:when test="unparsed-text-available(resolve-uri(@src, $base-uri))"/>
+         <xsl:when test="saxon:try(                            format-dateTime(                              saxon:last-modified(                                resolve-uri(                                  @src,                                   $base-uri                                )                              ),                               '[Y]'                            ),                            false()                          )"/>
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
-                                test="unparsed-text-available(resolve-uri(@src, $base-uri))">
+                                test="saxon:try( format-dateTime( saxon:last-modified( resolve-uri( @src, $base-uri ) ), '[Y]' ), false() )">
                <xsl:attribute name="id">ImageMissing</xsl:attribute>
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
                <svrl:text>The non-equation image <xsl:text/>
                   <xsl:value-of select="@src"/>
-                  <xsl:text/> must be present at their @src location.</svrl:text>
+                  <xsl:text/> must be present at its @src location.</svrl:text>
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>

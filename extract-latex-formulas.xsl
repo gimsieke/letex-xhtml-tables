@@ -37,6 +37,8 @@
     <xsl:for-each select="$latex-images">
       <xsl:result-document href="{$srcdir}{letex:basename(@src, 'tex')}">
 \documentclass{article}
+\usepackage{amsmath}
+\InputIfFileExists{localdefs.tex}
 \thispagestyle{empty}
 \begin{document}
 <xsl:value-of select="@alt"/>

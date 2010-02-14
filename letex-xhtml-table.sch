@@ -235,7 +235,18 @@
    <s:pattern id="NonEquationImagesMustBePresent">
       <s:title>Non-equation images must be present</s:title>
       <s:rule context="html:img[not(starts-with(@src, 'ieq_'))]">
-         <s:assert test="unparsed-text-available(resolve-uri(@src, $base-uri))" id="ImageMissing">The non-equation image <s:value-of select="@src"/> must be present at their @src location.</s:assert>
+         <s:assert test="saxon:try(
+                           format-dateTime(
+                             saxon:last-modified(
+                               resolve-uri(
+                                 @src, 
+                                 $base-uri
+                               )
+                             ), 
+                             '[Y]'
+                           ),
+                           false()
+                         )" id="ImageMissing">The non-equation image <s:value-of select="@src"/> must be present at its @src location.</s:assert>
       </s:rule>
    </s:pattern>
 
