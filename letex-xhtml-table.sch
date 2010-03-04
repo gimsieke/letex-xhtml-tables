@@ -57,7 +57,7 @@
 
    <s:p>Copyright (C) 2010, le-tex publishing services GmbH</s:p>
 
-   <s:p>Version: $Id: din-dbk.sch 5584 2009-11-24 12:14:07Z gerrit $</s:p>
+   <s:p>Version: 1.0.2 (2009-02-14)</s:p>
 
    <s:pattern id="AllowedElements" abstract="true">
       <s:rule context="$parent-name-pattern">

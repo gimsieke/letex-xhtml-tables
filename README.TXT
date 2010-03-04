@@ -145,7 +145,7 @@ file:/C:/cygwin/home/gerrit/letex-xhtml-tables/sample/u01t14.xhtml
      message: Please consider using LaTeX markup for equations (for proper spacing, etc.)  
   ID:         NonEquationImagesMustBePresent  
   title:      Non-equation images must be present  
-  test:       saxon:try( format-dateTime( saxon:last-modified( resolve-uri( @src, $base-uri ) ), '[Y]' ), false() )
+  test:       letex:file-exists( resolve-uri( @src, $base-uri ) )
     location: /html/body/table/tbody/tr[14]/td[3]/p/img
      message: The non-equation image u01t14_002.jpg must be present at its @src location.
 

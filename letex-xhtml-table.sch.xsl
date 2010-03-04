@@ -179,7 +179,7 @@
 		 <xsl:value-of select="$fileDirParameter"/>
          </xsl:comment>
          <svrl:text>Copyright (C) 2010, le-tex publishing services GmbH</svrl:text>
-         <svrl:text>Version: $Id: din-dbk.sch 5584 2009-11-24 12:14:07Z gerrit $</svrl:text>
+         <svrl:text>Version: 1.0.2 (2009-02-14)</svrl:text>
          <svrl:ns-prefix-in-attribute-values uri="http://www.w3.org/1999/xhtml" prefix="html"/>
          <svrl:ns-prefix-in-attribute-values uri="http://www.le-tex.de/namespace" prefix="letex"/>
          <svrl:active-pattern>
