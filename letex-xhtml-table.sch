@@ -24,6 +24,7 @@
       <s:active pattern="HeadAllowedElements" />
       <s:active pattern="Head" />
       <s:active pattern="LinkAllowedAttributes" />
+      <s:active pattern="StylesheetMustBePresent" />
       <s:active pattern="HeadAllowedAttributeValues" />
       <s:active pattern="BodyAllowedElements" />
       <s:active pattern="TableAllowedElements" />
@@ -43,8 +44,6 @@
       <s:active pattern="OrderedListAllowedAttributes" />
       <s:active pattern="OrderedListAllowedAttributeValues" />
       <s:active pattern="UnorderedListsPlain" />
-
-
    </s:phase>
 
    <s:phase id="wrn">
@@ -62,6 +61,12 @@
    <s:pattern id="AllowedElements" abstract="true">
       <s:rule context="$parent-name-pattern">
          <s:assert test="every $c in * satisfies (node-name($c) = (for $n in tokenize('$child-names', '\s+') return QName($ns-uri, $n)))">Only elements (<s:value-of select="'$child-names'"/>) are allowed in this context. Found: <s:value-of select="distinct-values(*[not(string(node-name(.)) = tokenize('$child-names', '\s+'))]/node-name(.))" /></s:assert>
+      </s:rule>
+   </s:pattern>
+
+   <s:pattern id="NoImmediateText" abstract="true">
+      <s:rule context="$parent-name-pattern">
+         <s:assert test="every $t in text() satisfies matches($t, '^\s*$', 's')">Only elements but no immediate text nodes are allowed in this context. Found: <s:value-of select="string-join(text()[not(matches(., '^[\r\n\t ]*$'))], '|')" /></s:assert>
       </s:rule>
    </s:pattern>
 
@@ -123,6 +128,20 @@
       <s:param name="attribute-value-regex" value="^stylesheet" />
    </s:pattern>
 
+   <s:pattern id="StylesheetMustBePresent">
+      <s:title>A referenced css stylesheet must be present.</s:title>
+      <s:rule context="html:link[@rel='stylesheet']">
+         <s:assert test="@type='text/css'" id="StylesheetPresentCSS">The type of a rel=stylesheet link must be text/css.</s:assert>
+         <s:assert test="letex:file-exists(
+                           resolve-uri(
+                             @href, 
+                             $base-uri
+                           )
+                         )" id="StylesheetMissing">The stylesheet <s:value-of select="@href"/> must be present at its @href location (for visual checking).</s:assert>
+         <s:assert test="@type='text/css'" id="StylesheetPresentCSS">The type of a rel=stylesheet link must be text/css.</s:assert>
+      </s:rule>
+   </s:pattern>
+
    <s:pattern id="BodyAllowedElements" is-a="AllowedElements">
       <s:title>Element 'body' allowed child elements</s:title>
       <s:param name="parent-name-pattern" value="html:body" />
@@ -171,6 +190,11 @@
       <s:title>Element 'td' allowed child elements</s:title>
       <s:param name="parent-name-pattern" value="html:td" />
       <s:param name="child-names" value="p ul ol" />
+   </s:pattern>
+
+   <s:pattern id="CellNoImmediateText" is-a="NoImmediateText">
+      <s:title>Element 'td' doesn't allow immediate text, only elements</s:title>
+      <s:param name="parent-name-pattern" value="html:td" />
    </s:pattern>
 
    <s:pattern id="CellAllowedAttributes" is-a="AllowedAttributes">
