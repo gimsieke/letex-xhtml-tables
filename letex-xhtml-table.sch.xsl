@@ -411,11 +411,20 @@
             <xsl:attribute name="document">
                <xsl:value-of select="document-uri(/)"/>
             </xsl:attribute>
+            <xsl:attribute name="id">EquationImageAllowedAttributeValues</xsl:attribute>
+            <xsl:attribute name="name">EquationImageAllowedAttributeValues</xsl:attribute>
+            <xsl:apply-templates/>
+         </svrl:active-pattern>
+         <xsl:apply-templates select="/" mode="M35"/>
+         <svrl:active-pattern>
+            <xsl:attribute name="document">
+               <xsl:value-of select="document-uri(/)"/>
+            </xsl:attribute>
             <xsl:attribute name="id">NonEquationImagesMustBePresent</xsl:attribute>
             <xsl:attribute name="name">Non-equation images must be present</xsl:attribute>
             <xsl:apply-templates/>
          </svrl:active-pattern>
-         <xsl:apply-templates select="/" mode="M35"/>
+         <xsl:apply-templates select="/" mode="M36"/>
       </svrl:schematron-output>
    </xsl:template>
 
@@ -558,10 +567,10 @@
 
 		    <!--ASSERT -->
 <xsl:choose>
-         <xsl:when test="if (@rel) then matches(@rel, '^stylesheet', 'x') else true()"/>
+         <xsl:when test="if (@rel) then (every $t in tokenize(@rel, '\s+') satisfies ($t = 'attention' or matches($t, '^stylesheet', 'x'))) else true()"/>
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
-                                test="if (@rel) then matches(@rel, '^stylesheet', 'x') else true()">
+                                test="if (@rel) then (every $t in tokenize(@rel, '\s+') satisfies ($t = 'attention' or matches($t, '^stylesheet', 'x'))) else true()">
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
@@ -571,7 +580,7 @@
                   <xsl:value-of select="'html:link'"/>
                   <xsl:text/>: value must match /<xsl:text/>
                   <xsl:value-of select="'^stylesheet'"/>
-                  <xsl:text/>/. Found: <xsl:text/>
+                  <xsl:text/>/ (or 'attention', which is always acceptable). Found: <xsl:text/>
                   <xsl:value-of select="@rel"/>
                   <xsl:text/>
                </svrl:text>
@@ -781,10 +790,10 @@
 
 		    <!--ASSERT -->
 <xsl:choose>
-         <xsl:when test="if (@class) then matches(@class, '^(rule-right|head)$', 'x') else true()"/>
+         <xsl:when test="if (@class) then (every $t in tokenize(@class, '\s+') satisfies ($t = 'attention' or matches($t, '^(rule-right|head)$', 'x'))) else true()"/>
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
-                                test="if (@class) then matches(@class, '^(rule-right|head)$', 'x') else true()">
+                                test="if (@class) then (every $t in tokenize(@class, '\s+') satisfies ($t = 'attention' or matches($t, '^(rule-right|head)$', 'x'))) else true()">
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
@@ -794,7 +803,7 @@
                   <xsl:value-of select="'html:col | html:colgroup'"/>
                   <xsl:text/>: value must match /<xsl:text/>
                   <xsl:value-of select="'^(rule-right|head)$'"/>
-                  <xsl:text/>/. Found: <xsl:text/>
+                  <xsl:text/>/ (or 'attention', which is always acceptable). Found: <xsl:text/>
                   <xsl:value-of select="@class"/>
                   <xsl:text/>
                </svrl:text>
@@ -844,25 +853,25 @@
 
 
 	<!--RULE -->
-<xsl:template match="tr" priority="1000" mode="M22">
-      <svrl:fired-rule xmlns:svrl="http://purl.oclc.org/dsdl/svrl" context="tr"/>
+<xsl:template match="html:tr" priority="1000" mode="M22">
+      <svrl:fired-rule xmlns:svrl="http://purl.oclc.org/dsdl/svrl" context="html:tr"/>
 
 		    <!--ASSERT -->
 <xsl:choose>
-         <xsl:when test="if (@class) then matches(@class, '^rule-below$', 'x') else true()"/>
+         <xsl:when test="if (@class) then (every $t in tokenize(@class, '\s+') satisfies ($t = 'attention' or matches($t, '^rule-below$', 'x'))) else true()"/>
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
-                                test="if (@class) then matches(@class, '^rule-below$', 'x') else true()">
+                                test="if (@class) then (every $t in tokenize(@class, '\s+') satisfies ($t = 'attention' or matches($t, '^rule-below$', 'x'))) else true()">
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
                <svrl:text>Attribute @<xsl:text/>
                   <xsl:value-of select="'class'"/>
                   <xsl:text/> of element <xsl:text/>
-                  <xsl:value-of select="'tr'"/>
+                  <xsl:value-of select="'html:tr'"/>
                   <xsl:text/>: value must match /<xsl:text/>
                   <xsl:value-of select="'^rule-below$'"/>
-                  <xsl:text/>/. Found: <xsl:text/>
+                  <xsl:text/>/ (or 'attention', which is always acceptable). Found: <xsl:text/>
                   <xsl:value-of select="@class"/>
                   <xsl:text/>
                </svrl:text>
@@ -979,10 +988,10 @@
 
 		    <!--ASSERT -->
 <xsl:choose>
-         <xsl:when test="if (@class) then matches(@class, '^rule-(right|below)$', 'x') else true()"/>
+         <xsl:when test="if (@class) then (every $t in tokenize(@class, '\s+') satisfies ($t = 'attention' or matches($t, '^rule-(right|below)$', 'x'))) else true()"/>
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
-                                test="if (@class) then matches(@class, '^rule-(right|below)$', 'x') else true()">
+                                test="if (@class) then (every $t in tokenize(@class, '\s+') satisfies ($t = 'attention' or matches($t, '^rule-(right|below)$', 'x'))) else true()">
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
@@ -992,7 +1001,7 @@
                   <xsl:value-of select="'html:td'"/>
                   <xsl:text/>: value must match /<xsl:text/>
                   <xsl:value-of select="'^rule-(right|below)$'"/>
-                  <xsl:text/>/. Found: <xsl:text/>
+                  <xsl:text/>/ (or 'attention', which is always acceptable). Found: <xsl:text/>
                   <xsl:value-of select="@class"/>
                   <xsl:text/>
                </svrl:text>
@@ -1074,10 +1083,10 @@
 
 		    <!--ASSERT -->
 <xsl:choose>
-         <xsl:when test="if (@class) then matches(@class, '^(roman|alph|arabic)$', 'x') else true()"/>
+         <xsl:when test="if (@class) then (every $t in tokenize(@class, '\s+') satisfies ($t = 'attention' or matches($t, '^(roman|alph|arabic)$', 'x'))) else true()"/>
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
-                                test="if (@class) then matches(@class, '^(roman|alph|arabic)$', 'x') else true()">
+                                test="if (@class) then (every $t in tokenize(@class, '\s+') satisfies ($t = 'attention' or matches($t, '^(roman|alph|arabic)$', 'x'))) else true()">
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
@@ -1087,7 +1096,7 @@
                   <xsl:value-of select="'html:ol'"/>
                   <xsl:text/>: value must match /<xsl:text/>
                   <xsl:value-of select="'^(roman|alph|arabic)$'"/>
-                  <xsl:text/>/. Found: <xsl:text/>
+                  <xsl:text/>/ (or 'attention', which is always acceptable). Found: <xsl:text/>
                   <xsl:value-of select="@class"/>
                   <xsl:text/>
                </svrl:text>
@@ -1284,17 +1293,17 @@
 
 		    <!--ASSERT -->
 <xsl:choose>
-         <xsl:when test="every $a in @* satisfies (name($a) = tokenize('src alt', '\s+'))"/>
+         <xsl:when test="every $a in @* satisfies (name($a) = tokenize('src alt class', '\s+'))"/>
          <xsl:otherwise>
             <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
-                                test="every $a in @* satisfies (name($a) = tokenize('src alt', '\s+'))">
+                                test="every $a in @* satisfies (name($a) = tokenize('src alt class', '\s+'))">
                <xsl:attribute name="location">
                   <xsl:apply-templates select="." mode="schematron-select-full-path"/>
                </xsl:attribute>
                <svrl:text>Only attributes (<xsl:text/>
-                  <xsl:value-of select="'src alt'"/>
+                  <xsl:value-of select="'src alt class'"/>
                   <xsl:text/>) are allowed in this context. Found: <xsl:text/>
-                  <xsl:value-of select="for $a in @*[not(name() = tokenize('src alt', '\s+'))] return concat( name($a), '=', $a)"/>
+                  <xsl:value-of select="for $a in @*[not(name() = tokenize('src alt class', '\s+'))] return concat( name($a), '=', $a)"/>
                   <xsl:text/>
                </svrl:text>
             </svrl:failed-assert>
@@ -1307,11 +1316,47 @@
       <xsl:apply-templates select="@*|*" mode="M34"/>
    </xsl:template>
 
+   <!--PATTERN EquationImageAllowedAttributeValues-->
+
+
+	<!--RULE -->
+<xsl:template match="html:img" priority="1000" mode="M35">
+      <svrl:fired-rule xmlns:svrl="http://purl.oclc.org/dsdl/svrl" context="html:img"/>
+
+		    <!--ASSERT -->
+<xsl:choose>
+         <xsl:when test="if (@class) then (every $t in tokenize(@class, '\s+') satisfies ($t = 'attention' or matches($t, '^$', 'x'))) else true()"/>
+         <xsl:otherwise>
+            <svrl:failed-assert xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                                test="if (@class) then (every $t in tokenize(@class, '\s+') satisfies ($t = 'attention' or matches($t, '^$', 'x'))) else true()">
+               <xsl:attribute name="location">
+                  <xsl:apply-templates select="." mode="schematron-select-full-path"/>
+               </xsl:attribute>
+               <svrl:text>Attribute @<xsl:text/>
+                  <xsl:value-of select="'class'"/>
+                  <xsl:text/> of element <xsl:text/>
+                  <xsl:value-of select="'html:img'"/>
+                  <xsl:text/>: value must match /<xsl:text/>
+                  <xsl:value-of select="'^$'"/>
+                  <xsl:text/>/ (or 'attention', which is always acceptable). Found: <xsl:text/>
+                  <xsl:value-of select="@class"/>
+                  <xsl:text/>
+               </svrl:text>
+            </svrl:failed-assert>
+         </xsl:otherwise>
+      </xsl:choose>
+      <xsl:apply-templates select="@*|*" mode="M35"/>
+   </xsl:template>
+   <xsl:template match="text()" priority="-1" mode="M35"/>
+   <xsl:template match="@*|node()" priority="-2" mode="M35">
+      <xsl:apply-templates select="@*|*" mode="M35"/>
+   </xsl:template>
+
    <!--PATTERN NonEquationImagesMustBePresentNon-equation images must be present-->
 <svrl:text xmlns:svrl="http://purl.oclc.org/dsdl/svrl">Non-equation images must be present</svrl:text>
 
 	  <!--RULE -->
-<xsl:template match="html:img[not(starts-with(@src, 'ieq_'))]" priority="1000" mode="M35">
+<xsl:template match="html:img[not(starts-with(@src, 'ieq_'))]" priority="1000" mode="M36">
       <svrl:fired-rule xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
                        context="html:img[not(starts-with(@src, 'ieq_'))]"/>
 
@@ -1331,10 +1376,10 @@
             </svrl:failed-assert>
          </xsl:otherwise>
       </xsl:choose>
-      <xsl:apply-templates select="@*|*" mode="M35"/>
+      <xsl:apply-templates select="@*|*" mode="M36"/>
    </xsl:template>
-   <xsl:template match="text()" priority="-1" mode="M35"/>
-   <xsl:template match="@*|node()" priority="-2" mode="M35">
-      <xsl:apply-templates select="@*|*" mode="M35"/>
+   <xsl:template match="text()" priority="-1" mode="M36"/>
+   <xsl:template match="@*|node()" priority="-2" mode="M36">
+      <xsl:apply-templates select="@*|*" mode="M36"/>
    </xsl:template>
 </xsl:stylesheet>

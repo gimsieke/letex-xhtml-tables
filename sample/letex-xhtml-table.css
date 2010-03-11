@@ -15,3 +15,6 @@ colgroup.head, col.head, thead {
   background-color:#ccc !important;
 }
 
+.attention { 
+  background-color:yellow;
+}

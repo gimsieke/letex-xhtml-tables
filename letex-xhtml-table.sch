@@ -56,7 +56,7 @@
 
    <s:p>Copyright (C) 2010, le-tex publishing services GmbH</s:p>
 
-   <s:p>Version: 1.0.2 (2009-02-14)</s:p>
+   <s:p>Version: 1.0.4 (2009-03-11)</s:p>
 
    <s:pattern id="AllowedElements" abstract="true">
       <s:rule context="$parent-name-pattern">
@@ -84,7 +84,7 @@
 
    <s:pattern id="AllowedAttributeValues" abstract="true">
       <s:rule context="$element-name">
-         <s:assert test="if (@$attribute-name) then matches(@$attribute-name, '$attribute-value-regex', 'x') else true()">Attribute @<s:value-of select="'$attribute-name'"/> of element <s:value-of select="'$element-name'"/>: value must match /<s:value-of select="'$attribute-value-regex'"/>/. Found: <s:value-of select="@$attribute-name" /></s:assert>
+         <s:assert test="if (@$attribute-name) then (every $t in tokenize(@$attribute-name, '\s+') satisfies ($t = 'attention' or matches($t, '$attribute-value-regex', 'x'))) else true()">Attribute @<s:value-of select="'$attribute-name'"/> of element <s:value-of select="'$element-name'"/>: value must match /<s:value-of select="'$attribute-value-regex'"/>/ (or 'attention', which is always acceptable). Found: <s:value-of select="@$attribute-name" /></s:assert>
       </s:rule>
    </s:pattern>
 
@@ -181,7 +181,7 @@
 
    <s:pattern id="RowAllowedAttributeValues" is-a="AllowedAttributeValues">
       <s:title>tr class attribute may only be 'rule-below'</s:title>
-      <s:param name="element-name" value="tr" />
+      <s:param name="element-name" value="html:tr" />
       <s:param name="attribute-name" value="class" />
       <s:param name="attribute-value-regex" value="^rule-below$" />
    </s:pattern>
@@ -265,7 +265,14 @@
    <s:pattern id="EquationImageAllowedAttributes" is-a="AllowedAttributes">
       <s:title>Equation images may have a src and an alt attribute (and nothing else)</s:title>
       <s:param name="element-name" value="html:img[starts-with(@src, 'ieq_')]" />
-      <s:param name="attribute-names" value="src alt" />
+      <s:param name="attribute-names" value="src alt class" />
+   </s:pattern>
+
+   <s:pattern id="EquationImageAllowedAttributeValues" is-a="AllowedAttributeValues">
+      <s:title>img class attribute may only be 'attention'</s:title>
+      <s:param name="element-name" value="html:img" />
+      <s:param name="attribute-name" value="class" />
+      <s:param name="attribute-value-regex" value="^$" /><!-- attention is always permissible -->
    </s:pattern>
 
    <s:pattern id="NonEquationImagesMustBePresent">

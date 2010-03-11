@@ -60,7 +60,7 @@
             <line>
               <xsl:text>convert -density 120 -trim </xsl:text>
               <xsl:value-of select="letex:basename(current()/@src, 'pdf')"/>
-              <xsl:text> </xsl:text>
+              <xsl:text> -transparent white </xsl:text>
               <xsl:value-of select="letex:basename(current()/@src, 'png')"/> 
             </line>
             <line>
